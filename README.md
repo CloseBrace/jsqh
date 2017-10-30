@@ -1,2 +1,2 @@
 # jsqh
-JavaScript Quick Hits: Short, Simple JavaScript Tutorials
+JS Quick Hits: Short, Simple JavaScript Tutorials

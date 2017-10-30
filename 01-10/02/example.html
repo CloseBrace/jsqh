@@ -1,0 +1,125 @@
+<script>
+
+/* ======================================================================================
+   Example One: using constants
+====================================================================================== */
+
+function greet(name) {
+  const greeting = 'Hello there, ';
+  return greeting + name;
+}
+
+try {
+  console.log(greet('Scott'));
+  console.log(greet('Jean'));
+} catch (err) {
+  console.log(err);
+}
+
+/* ======================================================================================
+   Example Two: Reassigning a constant will throw an error
+====================================================================================== */
+console.log('-----------------------------------');
+
+function greet2(name) {
+  const greeting = 'Hello there, ';
+  greeting = greeting + name;
+  return greeting;
+}
+
+try {
+  console.log(greet2('Scott'));
+  console.log(greet2('Jean'));
+} catch (err) {
+  console.log(err);
+}
+
+/* ======================================================================================
+   Example Three: You can still reassign properties or array values in a const
+====================================================================================== */
+console.log('-----------------------------------');
+
+const xMen1 = {
+  cyclops: 'Scott Summers',
+  phoenix: 'Jean Grey',
+  wolverine: 'James "Logan" Howlett',
+};
+
+try {
+  xMen1.wolverine = 'Laura Kinney';
+  console.log(xMen1.wolverine) // 'Laura Kinney'
+} catch (err) {
+  console.log(err);
+}
+
+/* ======================================================================================
+   Example Four: But reassigning at the top level will throw an error
+====================================================================================== */
+console.log('-----------------------------------');
+
+const xMen2 = {
+  cyclops: 'Scott Summers',
+  phoenix: 'Jean Grey',
+  wolverine: 'James "Logan" Howlett',
+};
+
+try {
+  xMen2 = {
+    beast: 'Henry McCoy',
+    angel: 'Warren Worthington',
+  }
+  console.log(xMen2.beast);
+} catch (err) {
+  console.log(err);
+}
+
+/* ======================================================================================
+   Example Five: You can reassign let variables, no problem
+====================================================================================== */
+console.log('-----------------------------------');
+
+let text = 'Hello, World!';
+console.log(text);
+text = 'Here’s a second message';
+console.log(text);
+
+/* ======================================================================================
+   Example Six: Including replacing entire Arrays or objects
+====================================================================================== */
+console.log('-----------------------------------');
+
+let myArray =  [0, 5, 10, 15, 20];
+console.log(myArray[2]); // 10
+myArray = [25, 30, 35, 40, 45];
+console.log(myArray[2]); // 35
+
+/* ======================================================================================
+   Example Seven: redefining a var is allowed, but not a good idea
+====================================================================================== */
+console.log('-----------------------------------');
+
+try {
+  var i = 10;
+  console.log(i);
+  var i = 15;
+  console.log(i);
+} catch (err) {
+  console.log(err);
+}
+
+/* ======================================================================================
+   Example Eight: redefining a let or const will throw an error
+====================================================================================== */
+console.log('-----------------------------------');
+
+// You need to uncomment this to see it in action Because if it's not commented,
+// it breaks all the other examples.
+
+/*
+let a = 10;
+console.log(a);
+let a = 15;
+console.log(a);
+*/
+
+</script>

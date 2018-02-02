@@ -1,0 +1,14 @@
+<script>
+
+// Our Array
+const xMen = ['Storm', 'Cyclops', 'Beast', 'Phoenix', 'Wolverine', 'Mystique', 'Quicksilver'];
+
+// Custom function that returns true if a string is longer than 7 chars
+const findLongName = name => name.length > 7;
+
+// Using Array.filter
+const longNames = xMen.filter(findLongName);
+
+console.log(longNames);
+
+</script>

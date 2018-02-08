@@ -1,0 +1,79 @@
+<html>
+  <body>
+    <div>
+      <p>Make sure to open your JavaScript console!</p>
+      <p>Paragraph 2</p>
+      <p>Paragraph 3</p>
+    </div>
+  </body>
+<script>
+
+// Our Array
+const pirates = ['Bluebeard', 'Blackbeard', 'Long John Silver', 'Captain Jack Sparrow'];
+
+// ES5 requires us to build our own entries array first
+const piratesEntries = [];
+for (var i = 0; i < pirates.length; i++) {
+  const pirateEntry = [i, pirates[i]];
+  piratesEntries.push(pirateEntry);
+}
+// Then we loop over that to provide output
+for (var a = 0; a < piratesEntries.length; a++) {
+  console.log('index: ' + piratesEntries[a][0] + ', name: ' + piratesEntries[a][1]);
+}
+
+console.log('------------');
+
+// ES 2015 lets us shorten that significantly
+for (let [index, name] of pirates.entries()) {
+  console.log(`index: ${index}, name: ${name}`);
+}
+
+console.log('------------');
+
+// And of couse you can just loop over the original array, too!
+for (let pirate of pirates) {
+  console.log(`Arrrrr! I be ${pirate}.`);
+}
+
+console.log('------------');
+
+// Want to get out of the loop early? No problem! Use break.
+for (let pirate of pirates) {
+  if (pirate === 'Long John Silver') { break; }
+  console.log(`Arrrrr! I be ${pirate}.`);
+}
+
+console.log('------------');
+
+// You can use it with strings!
+for(let letter of 'Bluebeard') {
+  console.log(letter); // B, l, u, e, b, e, a, r, d;
+}
+
+console.log('------------');
+
+// You can use it with nodelists!
+const paragraphs = document.querySelectorAll('p');
+for(let paragraph of paragraphs) {
+  console.log(paragraph.innerHTML);
+}
+
+console.log('------------');
+
+// You can use it with maps and sets!
+// If you know how to use maps and sets!
+// Which I should probably teach you at some point!
+// But for now, know that sets ignore duplicates, so ...
+const iterableSet = new Set(['Bluebeard', 'Blackbeard', 'Blackbeard', 'Bluebeard']);
+for (let pirate of iterableSet) {
+  console.log(pirate); // 'Bluebeard', 'Blackbeard'
+}
+
+// For even more, check out the MDN entry:
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
+
+</script>
+
+</html>
+

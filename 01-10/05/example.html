@@ -1,0 +1,61 @@
+<html>
+  <body>
+    <div>
+      <p>Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+const wolverine = {
+    alias: 'Logan',
+    firstName: 'James',
+    lastName: 'Howlett',
+    powers: [
+      'healing factor',
+      'adamantium skeleton',
+    ],
+    age: 130,
+    isHairy: true,
+};
+
+// ES5 Method
+var firstName = wolverine.firstName;
+var lastName = wolverine.lastName;
+console.log(firstName, lastName);
+
+console.log('------------');
+
+// ES2015 Method
+const { alias, age } = wolverine;
+console.log(`${alias} is ${age} years old`);
+
+console.log('------------');
+
+// Rename Variables!
+const { firstName: fName, lastName: lName } = wolverine;
+console.log(fName, lName); // James Howlett
+
+console.log('------------');
+
+// Destructure nested objects!
+const { powers: [power1, power2] } = wolverine;
+console.log(power1, power2) // healing factor adamantium skeleton
+
+console.log('------------');
+
+// It works with Arrays, too
+const xMen = ['Storm', 'Cyclops', 'Beast', 'Phoenix', 'Wolverine', 'Mystique', 'Quicksilver'];
+const [first, second, third] = xMen;
+console.log(first, second, third); //Storm Wolverine Cyclops
+
+console.log('------------');
+
+// Very handy when looping over nested data
+for ([index, value] of xMen.entries()) {
+  console.log(`Number ${index} is ${value}`);
+}
+
+</script>
+
+</html>
+

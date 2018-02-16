@@ -49,3 +49,5 @@ for (let pirate of pirates) {
 `for / of` also works with any other array-like type in JavaScript, such as nodelists, other complex JS types like `map` and `set`, and even strings. If you'd like to see more examples of `for / of` in action, check out [example file 4]() in the [JS Quick Hits GitHub Repo](https://github.com/CloseBrace/jsqh).
 
 You might've noticed that we introduced not one but two more ES 2015 features in this tutorial. This thing: `let [index, name]` is variable destructuring, and it is absolutely awesome. This thing: `${index}` is a template literal, and it is also awesome. We're going to talk about both in the next couple of weeks.
+
+*Enjoying these quick hits? You can get them five days early by [subscribing to our weekly newsletter](https://closebrace.com/newsletter/subscribe).*

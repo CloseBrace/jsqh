@@ -67,5 +67,6 @@ Number 0 is Storm
 
 Except, of course, the index and the value will change as it moves through the array.
 
-Before we get to talking about template literals like `${value}`, we're going to take a quick detour next week to talk about an important addition to desctructuring called the rest operator, which literally allows you to get the *rest* of an array.
+Before we get to talking about template literals like `${value}`, we're going to take a quick detour next week to talk about an important addition to destructuring called the rest operator, which literally allows you to get the *rest* of an array.
 
+*Enjoying these quick hits? You can get them five days early by [subscribing to our weekly newsletter](https://closebrace.com/newsletter/subscribe).*

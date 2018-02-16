@@ -17,3 +17,5 @@ console.log(longNames);
 Our console log will shown an Array that looks like this: `['Wolverine', 'Mystique', 'Quicksilver']`. That's incredibly handy &hellip; not just for sorting comic book heroes, but for all kinds of data manipulation.
 
 Next week we'll cover three useful `Array` methods introduced in ES6 that help with iterating over an Array's indices, values, or both!
+
+*Enjoying these quick hits? You can get them five days early by [subscribing to our weekly newsletter](https://closebrace.com/newsletter/subscribe).*

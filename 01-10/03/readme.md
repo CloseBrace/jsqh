@@ -30,3 +30,5 @@ Will yield the following:
 If you get to the end of the loop and call `next()` again, you'll get `undefined` as a response, which is obviously useful for determining when you've reached the end of your array.
 
 These methods also play particularly well with ES6's new `for / of` loop, which we'll talk about next week.
+
+*Enjoying these quick hits? You can get them five days early by [subscribing to our weekly newsletter](https://closebrace.com/newsletter/subscribe).*

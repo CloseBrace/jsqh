@@ -25,3 +25,4 @@ As you can see, the function will return false on Storm, Cyclops, Beast, and Pho
 
 You'll notice Mystique and Quicksilver are left out, because `Array.find` doesn't produce an entire array of positives, it only returns the first value. This, obviously, has its pros and cons. We'll talk about how to produce an entire array of answers next week, with `Array.filter`.
 
+*Enjoying these quick hits? You can get them five days early by [subscribing to our weekly newsletter](https://closebrace.com/newsletter/subscribe).*

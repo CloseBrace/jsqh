@@ -4,15 +4,15 @@ One of my absolute faaaa-haaaavorite parts of ES 2015 (aka ES6) is variable dest
 
 ```
 const wolverine = {
-    alias: 'Logan',
-    firstName: 'James',
-    lastName: 'Howlett',
-    powers: [
-      'healing factor',
-      'adamantium skeleton',
-    ],
-    age: 130,
-    isHairy: true,
+  alias: 'Logan',
+  firstName: 'James',
+  lastName: 'Howlett',
+  powers: [
+    'healing factor',
+    'adamantium skeleton',
+  ],
+  age: 130,
+  isHairy: true,
 };
 ```
 

@@ -59,7 +59,7 @@ for ([index, value] of xMen.entries()) {
 }
 ```
 
-That's going to log six lines, each of which looks like this:
+That's going to log seven lines, each of which looks like this:
 
 ```
 Number 0 is Storm

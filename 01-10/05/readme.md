@@ -48,7 +48,7 @@ You can also destructure arrays, like this:
 ```
 const xMen = ['Storm', 'Cyclops', 'Beast', 'Phoenix', 'Wolverine', 'Mystique', 'Quicksilver'];
 const [first, second, third] = xMen;
-console.log(first, second, third); //Storm Wolverine Cyclops
+console.log(first, second, third); //Storm Cyclops Beast
 ```
 
 This is nice enough, but where it really shines is in loops (including the various re-renders that happen in React, but that's a different tutorial &hellip; [series](https://closebrace.com/categories/five-minute-react)). Let's take a look at the `for / of` loop we talked about [last week](https://closebrace.com/tutorials/2018-02-14/js-quick-hits-4-for-of-loop) in combination with the [entries iterator we covered in week 3](https://closebrace.com/tutorials/2018-02-07/js-quick-hits-3-array-iterators). That's the one that gives us little mini-arrays of both index and value. We'll use our xMen array from above.

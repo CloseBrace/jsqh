@@ -1,0 +1,58 @@
+<html>
+  <body>
+    <div>
+      <p>Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Old ES5 Way using the arguments object
+function logNames() {
+  for (var i = 0; i < arguments.length; i++) {
+    console.log(arguments[i]);
+  }
+}
+logNames('Bob', 'Jen', 'Cam', 'Pratik'); // Bob Jen Cam Pratik
+
+console.log('------------');
+
+// But the arguments object includes existing parameters
+function logNames2(name1, name2) {
+  console.log(name1);
+  console.log(name2);
+  for (var i = 0; i < arguments.length; i++) {
+    console.log(arguments[i]);
+  }
+}
+logNames2('Bob', 'Jen', 'Cam', 'Pratik') // Bob Jen Bob Jen Cam Pratik
+
+console.log('------------');
+
+// New ES6 Way using the rest operator to get an array of remaining arguments
+const logNamesES6 = (name1, name2, ...names) => {
+  console.log(name1);
+  console.log(name2);
+   for (var i = 0; i < names.length; i++) {
+    console.log(names[i]);
+  }
+}
+logNamesES6('Bob', 'Jen', 'Cam', 'Pratik'); // Bob Jen Cam Pratik
+
+console.log('------------');
+
+// Another example using the rest operator
+const splitBill = (numPeople, tipPercent, ...prices) => {
+  let total = 0;
+  for (let i = 0; i < prices.length; i++) {
+    total += prices[i];
+  }
+  total += total * tipPercent;
+  return total / numPeople;
+}
+const totalPerPerson = splitBill(3, 0.2, 24, 26, 14, 18, 17, 21);
+console.log(`Each person owes $${totalPerPerson}`); // Each person owes $48
+
+</script>
+
+</html>
+

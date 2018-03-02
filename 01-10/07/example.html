@@ -1,0 +1,42 @@
+<html>
+  <body>
+    <div>
+      <p>Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Some data with which to work
+const name = 'T\'Challa';
+const country = 'Wakanda';
+const numSiblings = 1;
+const occupation = 'king';
+
+// Old ES5 way of concatenating strings
+console.log('Black Panther\'s name is ' + name + ', he lives in ' + country + ' where he is a ' + occupation + ', and he has ' + numSiblings + ' siblings.');
+
+console.log('------------');
+
+// New ES2015 way of concatenating strings
+console.log(`Black Panther's name is ${name}, he lives in ${country} where he is a ${occupation}, and he has ${numSiblings} siblings.`);
+
+console.log('------------');
+
+// Placeholders can contain and execute code
+console.log(`Black Panther has ${numSiblings} ${ numSiblings === 1 ? 'sibling' : 'siblings' }.`);
+
+console.log('------------');
+
+// You can nest template literals
+console.log(`Black Panther has ${ numSiblings === 1 ? `${numSiblings} sibling` : `${numSiblings} siblings` }.`);
+
+console.log('------------');
+
+// Template literals can contain line breaks!
+console.log(`Black Panther's name is ${name}.
+  He lives in ${country}.`);
+
+</script>
+
+</html>
+

@@ -1,0 +1,54 @@
+<html>
+  <body>
+    <div>
+      <p>Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+const characters = ['Bojack', 'Todd', 'Princess Carolyn'];
+const newCharacters = ['Diane', 'Mr. Peanutbutter'];
+
+// We want to combine the two into a single array, but this ain't gonna work ...
+console.log([characters, newCharacters]);
+
+console.log('------------');
+
+// Here's how to easily combine two or more arrays
+const castList = [...characters, ...newCharacters];
+console.log(castList); // ['Bojack', 'Todd', 'Princess Carolyn', 'Diane', 'Mr. Peanutbutter'];
+
+console.log('------------');
+
+// Or just add the new characters to the existing list
+characters.push(...newCharacters);
+console.log(characters); // ['Bojack', 'Todd', 'Princess Carolyn', 'Diane', 'Mr. Peanutbutter'];
+
+console.log('------------');
+
+// Pass function arguments as an array without using .apply
+const twoSides = [20, 21];
+const pythag = (a, b) => {
+  // note: simple multiplying is faster for squaring than Math.pow();
+  const c = Math.sqrt(a * a + b * b);
+  console.log(`The third side is ${c} units long`);
+}
+pythag (...twoSides); // The third side is 29 units long;
+
+console.log('------------');
+
+// Works great with functions designed to take an arbitrary number of arguments!
+const values = [23.6, 32.74, 18.3, 12.98];
+console.log(Math.max(...values)); // 32.74
+
+console.log('------------');
+
+// Also incredibly useful with variable destructuring
+// Note: we muted the characters array above, so it now contains all the characters
+const [lead, roommate, ...others] = characters;
+console.log(lead); // Bojack
+console.log(roommate); // Todd
+console.log(others); // ['Princess Carolyn', 'Diane', 'Mr. Peanutbutter']
+
+</script>
+</html>

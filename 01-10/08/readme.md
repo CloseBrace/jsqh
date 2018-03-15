@@ -1,62 +1,64 @@
-### JS Quick Hits: The Rest Operator
+### JS Quick Hits: The Spread Operator
 
-Today we're going to talk about template literals, which are also sometimes called template strings (an old name that is now deprecated). We've used these a few times already in some previous tutorials, and you probably have an idea for how they work, but let's go through the specifics.
+*video version: https://youtu.be/S1HDS2n4gWI*
 
-Template literals behave a lot like typical JavaScript strings, in that they contain chunks of text. However, they offer a few distinct advantages over traditional strings. The most obvious is that they make concatenation both slightly shorter and significantly easier on the eyes. Let's say we have these variables:
-
-```
-const name = 'T’Challa';
-const country = 'Wakanda';
-const numSiblings = 1;
-const occupation = 'king';
-```
-
-With ES5, we'd need to do something like this to create a short sentence:
+This week we're covering one of the truly great new additions in ES 2015. The Spread Operator allows you to access the values in an array or array-like type (such as a nodelist) and more easily work with them in your code. Let's build ourselves two simple arrays:
 
 ```
-console.log('Black Panther’s name is ' + name + ', he lives in ' + country + ' where he is a ' + occupation + ', and he has ' + numSiblings + ' siblings.');
+const characters = ['Bojack', 'Todd', 'Princess Carolyn'];
+const newCharacters = ['Diane', 'Mr. Peanutbutter'];
 ```
 
-That's fine &hellip; it's not impossible to figure out what's going on there or anything, but if you're like me, with longer string concatenation there's roughly a 100% chance you'll miss a space or something on your first attempt, end up with a sentence that starts like *Black Panther's name isT'Challa* and have to go back and fix it.
-
-Here's the ES2015 version:
+If we want to combine these two arrays, we can't just do the following:
 
 ```
-console.log(`Black Panther’s name is ${name}, he lives in ${country} where he is a ${occupation}, and he has ${numSiblings} siblings.`);
+const castList = [characters, newCharacters];
 ```
 
-That's shorter by twenty-one characters, which is nice enough, but it's also infinitely more readable. Those dollar-signed variables are called *placeholders* and get filled in by the JS engine at run-time with the appropriate variables.
-
-Now, perhaps you're annoyed by that code outputting "1 siblings" instead of the correct "1 sibling." Of course, we don't want to just knock off the 's' because what if he finds out he has a long-lost brother, which is the exact kind of thing that probably has actually happened in the comics at some point. Well, GOOD NEWS EVERYONE! Template literals are awesome because placeholders aren't limited to containing simple data. You can perform actual code in them. Observe!
+Because all that would do is give us an array with two values, each of which was a nested array. There are a variety of approaches to combining arrays in JavaScript, but ES 2015 has made it really easy:
 
 ```
-console.log(`Black Panther has ${numSiblings} ${ numSiblings === 1 ? 'sibling' : 'siblings' }.`);
+const castList = [...characters, ...newCharacters];
+console.log(castList); // ['Bojack', 'Todd', 'Princess Carolyn', 'Diane', 'Mr. Peanutbutter'];
 ```
 
-The first placeholder just outputs the value of numSiblings, but the second placeholder uses a ternary operator to evaluate numSiblings and respond with a particular string based on whether the number equals 1 or not. You can also *nest* these things, which can get a little complex. Here's an alternate version of the code above:
+You can also use this with `Array` methods like `push()`, so we could just add the new characters in with the existing ones, like this:
 
 ```
-console.log(`Black Panther has ${ numSiblings === 1 ? `${numSiblings} sibling` : `${numSiblings} siblings` }.`);
+characters.push(...newCharacters);
+console.log(characters); // ['Bojack', 'Todd', 'Princess Carolyn', 'Diane', 'Mr. Peanutbutter'];
 ```
 
-In this case nesting is longer than not nesting, but there are times when it can either shorten code or make it easier for human eyes to parse.
-
-One final thing to mention: template literals can contain line breaks, but they will parse those line breaks, so this code:
+You can also use the spread operator to pass arguments to a function in an array without having to use `Array.apply()`. Here's an example:
 
 ```
-console.log(`Black Panther’s name is ${name}.
-  He lives in ${country}.`);
+const twoSides = [20, 21];
+const pythag = (a, b) => {
+  // note: simple multiplying is faster for squaring than Math.pow();
+  const c = Math.sqrt(a * a + b * b);
+  console.log(`The third side is ${c} units long`);
+}
+pythag(...twoSides); // The third side is 29 units long;
 ```
 
-will log this:
+As you can see, it takes the first entry in the array and matches it to the first argument, the second value to the second argument, and so forth. Any additional values in an array that don't have corresponding arguments will need to be accessed with the `arguments` object &hellip; unless of course you're [using the rest operator](https://closebrace.com/tutorials/2018-02-28/js-quick-hits-6-the-rest-operator)!
+
+The spread operator works really well in a function designed to take an arbitrary number of arguments. For example, JavaScript's built-in `Math.max()`, which returns the largest number from its list of arguments.
 
 ```
-Black Panther’s name is T'Challa.
-  He lives in Wakanda.
+const values = [23.6, 32.74, 18.3, 12.98];
+console.log(Math.max(...values)); // 32.74
 ```
 
-See how it also keeps all your spacing? That can be good or bad. Personally I don't find multi-line template literals to be super useful, but I'm sure there are situations where it makes sense.
+And, of course, let's not forget that the spread operator is amazingly useful with [variable destructuring](https://closebrace.com/tutorials/2018-02-21/js-quick-hits-5-variable-destructuring). If you work in React in any major capacity, you'll end up using this and loving it. Here's a simple example. Remember that we mutated the characters array above with `.push()`, so it contains everyone now.
 
-There's more to template literals &ndash; specifically, something called tagged functions, but those are complex and would take longer to explain than we have available, so we'll have to get to them in a future tutorial!
+```
+const [lead, roommate, ...others] = characters;
+console.log(lead); // Bojack
+console.log(roommate); // Todd
+console.log(others); // ['Princess Carolyn', 'Diane', 'Mr. Peanutbutter']
+```
 
-*Enjoying these quick hits? You can get them five days early by [subscribing to our weekly newsletter](https://closebrace.com/newsletter/subscribe).*
+There are lots more ways to use the spread operator, but this is a pretty good sampling that should give you a feel for how it works. As always, if you want to deep-dive, I recommend MDN's topic page on the subject.
+
+Next week we'll do a quick introduction (or refresher) on ternary operators, which are not an ES 2015 feature but are something you should definitely know how to use. They took me a bit to wrap my head around when I was first learning, but now I love them like a family member. See you then!

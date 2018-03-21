@@ -1,0 +1,56 @@
+<html>
+  <body>
+    <div>
+      <p>Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Ternary operators do one thing if true, or another if false
+const person = 'Perseus';
+person === 'Medusa' ? console.log('Yep, Medusa!') : console.log(`Nope, not Medusa. That's ${person}.`); // Nope, not Medusa. That's Perseus.
+
+const person2 = 'Medusa';
+person2 === 'Medusa' ? console.log('Yep, Medusa!') : console.log(`Nope, not Medusa. That's ${person2}.`); // Yep, Medusa!
+
+console.log('------------');
+
+// You can call functions within ternary operators
+const logArray = (arr) => {
+  for (val of arr) {
+    console.log(val);
+  }
+}
+const demiGods = ['Achilles', 'Dionysus', 'Heracles', 'Perseus'];
+
+Array.isArray(demiGods) ? logArray(demiGods) : console.log('Not an array'); // Achilles, Dionysus, Heracles, Perseus
+
+console.log('------------');
+
+// It's totally fine to just do nothing in one case
+const demiGod = 'Achilles';
+Array.isArray(demiGod) ? logArray(demiGod) : null // does nothing!
+
+console.log('------------');
+
+// You can use complex evaluations, like with if statements
+// Use it with "and"
+demiGods[1] === 'Dionysus' && demiGods[3] === 'Perseus' ? console.log(true) : console.log(false); // true
+// Use it with "or"
+demiGods[0] === 'Achilles' || demiGods[3] === 'Medusa' ? console.log(true) : console.log(false); // true
+
+// Bonus: here's a react example, which I have to comment out because it causes errors in a standard JS console!
+/*
+
+const createList = (arr) => {
+  return arr.map(item => (<li>{item}</li>));
+}
+// and then, in your render block
+<ul>
+  { demiGods.length > 0 ? createList(demiGods) : <li>No Items Found</li> }
+</ul>
+
+*/
+
+</script>
+</html>

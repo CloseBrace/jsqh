@@ -62,3 +62,5 @@ console.log(others); // ['Princess Carolyn', 'Diane', 'Mr. Peanutbutter']
 There are lots more ways to use the spread operator, but this is a pretty good sampling that should give you a feel for how it works. As always, if you want to deep-dive, I recommend MDN's topic page on the subject.
 
 Next week we'll do a quick introduction (or refresher) on ternary operators, which are not an ES 2015 feature but are something you should definitely know how to use. They took me a bit to wrap my head around when I was first learning, but now I love them like a family member. See you then!
+
+*Enjoying these quick hits? You can get them five days early by [subscribing to our weekly newsletter](https://closebrace.com/newsletter/subscribe).*

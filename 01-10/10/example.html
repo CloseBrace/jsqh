@@ -1,0 +1,78 @@
+<html>
+  <body>
+    <div>
+      <p>Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// ES5 Set Default Parameter
+function greetUser(name) {
+  if (typeof name === 'undefined') {
+    name = 'Anonymous';
+  }
+  console.log('Hello, ' + name + '!');
+}
+greetUser(); // Hello, Anonymous!
+greetUser('Immortan Joe'); // Hello, Immortan Joe!
+
+console.log('------------');
+
+// ES6 Set Default Parameter
+const describeUser = (adj = 'shiny and chrome') => {
+  console.log(`You're very ${adj}!`);
+}
+describeUser(); // You're very shiny and chrome!
+describeUser('belligerent'); // You're very belligerent!
+
+console.log('------------');
+
+// Be careful of passing falsy values other than undefined, though! You won't get the default param
+describeUser(undefined); // You're very shiny and chrome!
+describeUser(null); // You're very null!
+describeUser(false); // You're very false!
+
+console.log('------------');
+
+// Evaluation at call time means a new object/array is created each time
+// So you can't keep working with the same array
+const addWarBoy = (name, warBoys = ['Nux', 'Slit']) => {
+  warBoys.push(name);
+  return warBoys;
+}
+console.log(addWarBoy('Ace')); // ['Nux', 'Slit', 'Ace'];
+console.log(addWarBoy('Rictus')); // ['Nux', 'Slit', 'Rictus'];
+
+console.log('------------');
+
+// But of course you COULD pass back the returned array to override the default
+const warBoys = addWarBoy('Ace');
+console.log(addWarBoy('Rictus', warBoys)); // ['Nux', 'Slit', 'Ace', 'Rictus'];
+
+console.log('------------');
+
+// Variables can use defaults set earlier in the chain
+const warParty = (numWarBoys = 3, numCars = numWarBoys / 2) => {
+  const numCarsRounded = Math.ceil(numCars);
+  console.log(`${numWarBoys} WarBoys need ${numCarsRounded} cars.`)
+}
+warParty(); // 3 WarBoys need 2 cars.
+warParty(17); // 17 WarBoys need 9 cars.
+warParty(25, 25); // 25 WarBoys need 25 cars.
+
+console.log('------------');
+
+// "But does it work with destructuring?" Yes it does!
+const Nux = {
+  name: 'Nux',
+  age: 24,
+  occupation: 'driver',
+};
+const describeWarBoy = ({ name, age, occupation } = { name: 'Rictus', age: 30, occupation: 'heavy gunner' }) => {
+  console.log(`${name} is ${age} years old and is a ${occupation}.`);
+}
+describeWarBoy(); // Rictus is 30 years old and is a heavy gunner.
+describeWarBoy(Nux); // Nux is 24 years old and is a driver.
+
+</script>
+</html>

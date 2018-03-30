@@ -1,0 +1,70 @@
+<html>
+  <body>
+    <div>
+      <p>Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// ES5 method
+function logExplorer(name, age, occupation) {
+  var explorer = {
+    name: name,
+    age: age,
+    occupation: occupation,
+    briefed: true,
+  };
+  return explorer;
+}
+var explorer = logExplorer('Lena', 32, 'Professor');
+console.log(explorer) // { name: 'Lena', age: 32, occupation: 'Professor', briefed: true }
+
+console.log('------------');
+
+// ES2015 method
+const logSoldier = (name, age, rank) => {
+  const soldier = {
+    name,
+    age,
+    rank,
+    enteredShimmer: true,
+  }
+  return soldier;
+}
+const soldier = logSoldier('Kane', 34, 'Sergeant');
+console.log(soldier); // { name: 'Kane', age: 34, rank: 'Sergeant', enteredShimmer: true }
+
+console.log('------------');
+
+// You still have to use full key value pairs if you're changing the key name
+const logPatrol = (name, time) => {
+  const patrolRecord = {
+    firstName: name,
+    time,
+  }
+  return patrolRecord;
+}
+const patrol = logPatrol('Josie', '01:00');
+console.log(patrol) // { firstName: 'Josie', time: '01:00' }
+
+console.log('------------');
+
+// Works great with variable destructuring!
+const shimmerParty = [
+  { name: 'Ventress', speciality: 'psychology' },
+  { name: 'Lena', specialty: 'biology' },
+  { name: 'Josie', speciality: 'physics' },
+  { name: 'Cass', speciality: 'anthropology' },
+  { name: 'Anya', speciality: 'medicine' },
+];
+shimmerParty.forEach(({ name, speciality }) => {
+  console.log(`${name} is skilled in ${speciality}.`);
+})
+// Ventress is skilled in psychology.
+// Lena is skilled in biology.
+// Josie is skilled in physics.
+// Cass is skilled in anthropology.
+// Anya is skilled in medicine.
+
+</script>
+</html>

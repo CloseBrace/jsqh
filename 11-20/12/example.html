@@ -1,0 +1,62 @@
+<html>
+  <body>
+    <div>
+      <p>Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+const guardians = ['Starlord', 'Gamora', 'Rocket', 'Groot', 'Drax'];
+
+// ES5 function declaration
+function soundOff(team) {
+  for (var i = 0; i < team.length; i++) {
+    console.log(team[i]);
+  }
+}
+soundOff(guardians); // Starlord, Gamora, Rocket, Groot, Drax
+
+console.log('------------');
+
+// ES6 Arrow Function ... basically the same
+const shoutOut = (team) => {
+  for (const member of team) {
+    console.log(`What's up, ${member}?`)
+  }
+}
+shoutOut(guardians); // "What's up, Starlord?", etc ...
+
+console.log('------------');
+
+// If you only have one parameter, you can remove the parentheses
+const interrogate = team => {
+  for (const member of team) {
+    console.log(`What are you doing here, ${member}?`);
+  }
+}
+interrogate(guardians); // "What are you doing here, Starlord?", etc ...
+
+console.log('------------');
+
+// This is an explicit return.
+const nameLength = name => {
+  return name.length;
+}
+console.log(nameLength('Starlord')); // 8
+
+console.log('------------');
+
+// But if all your function does is return a value, you can use
+// implicit return to reduce that down to one line!
+const shoutName = name => name.toUpperCase();
+console.log(shoutName('Gamora')); // GAMORA
+
+console.log('------------');
+
+// An arrow function with no arguments still needs parens to show it's a function
+// Also check out that nested arrow function with implicit return!
+const nameLengths = () => guardians.map(member => member.length);
+console.log(nameLengths()); // [8,6,6,5,4]
+
+</script>
+</html>

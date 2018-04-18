@@ -1,0 +1,83 @@
+<html>
+  <body>
+    <div>
+      <p>Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+const avengers = ['Iron Man', 'Captain America', 'Black Widow', 'Hulk', 'Thor', 'Hawkeye'];
+
+// This works fine because var is "hoisted" to function level
+// So the function can at least tell that logString is undefined.
+
+function logName(name) {
+  if (name) {
+    var logString = name + ' was logged.';
+  }
+  console.log(logString);
+}
+avengers.forEach(function(name) {
+  logName(name)
+}); // Iron Man was logged ... etc.
+
+console.log('------------');
+
+// Uncomment this code to see the error - I have to comment it to let further code run
+// It doesn't work because let is only available at block scope. It doesn't get hoisted.
+/*
+const logLength = (name) => {
+  if (name) {
+    let nameString = `${name} is ${name.length} characters long`;
+  }
+  console.log(nameString);
+}
+avengers.forEach(name => logLength(name)); // Uncaught ReferenceError: nameString is not defined
+*/
+
+console.log('------------');
+
+// Here's the correct way to do the above function.
+// this works because now nameString is scoped to the top level block
+// which means it's available to sub-blocks
+const logLength = (name) => {
+  let nameString = '';
+  if (name) {
+    nameString = `${name} is ${name.length} characters long`;
+  }
+  console.log(nameString);
+}
+avengers.forEach(name => logLength(name));
+
+console.log('------------');
+
+// In ES5 constructors, this doesn't carry down into sub-functions
+function ListNamesCounter(team) {
+  this.count = 0;
+  this.timer = setInterval(function() {
+    // the next 2 lines don't work because as far as this nested function is concerned
+    // this.count is undefined.
+    console.log(team[this.count]); // undefined
+    this.count++; // can't increment an undefined variable!
+  }, 1000);
+}
+var timedList = new ListNamesCounter(avengers); // undefined (indefinitely);
+
+// Comment the above code and uncomment this code to see ES2015 constructors at work
+// (otherwise the two functions conflict)
+
+/*
+function ListNamesCounter(team) {
+  this.count = 0;
+  this.timer = setInterval(() => {
+    // This code works, because "this" falls through
+    console.log(team[this.count]);
+    this.count++;
+    if (this.count === team.length) { clearInterval(this.timer) }
+  }, 1000);
+}
+var timedList = new ListNamesCounter(avengers); // Iron Man ... etc.
+*/
+
+</script>
+</html>

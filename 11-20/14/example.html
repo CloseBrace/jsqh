@@ -1,0 +1,73 @@
+<html>
+  <body>
+    <div>
+      <p>Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+const data = ['Deadpool', 'Domino', 'Bedlam', 'Shatterstar', 'Negasonic Teenage Warhead'];
+
+/* ============================================================= */
+
+// An example of an asynchronous "get" of data that takes two seconds to return
+const timer = setTimeout(() => {
+  return data
+}, 2000);
+
+// This won't work! It just logs "1", indicating the timer is in operation
+console.log(timer);
+
+console.log('------------');
+
+/* ============================================================= */
+
+// We need to wrap async functions like setTimout in a promise, then resolve!
+const getData = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(data);
+  }, 2000);
+});
+
+// We use "then" to say what to do when the promise resolves
+// This will wait two seconds, then log each member's name
+getData.then((data) => {
+  data.forEach((name) => { console.log(name)}); // Deadpool Domino Bedlam Shatterstar Negasonic Teenage Warhead
+  console.log('------------'); // gotta keep our separators AFTER the logged values! ;)
+});
+
+/* ============================================================= */
+
+// We use "catch" to say what to do when a promise rejects
+const getBadData = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject('Data not found');
+  }, 2000);
+});
+
+// This will wait two seconds, then log an error
+getBadData.then((data) => {
+  data.forEach((name) => { console.log(name) });
+  console.log('------------');
+})
+.catch((err) => {
+  console.warn(err); // Warning: Data not found
+  console.log('------------');
+});
+
+/* ============================================================= */
+
+// You can chain "then" by returning a value like this:
+// Note, you can use whatever variable names you want, for each "then".
+// So "shoutedData" would work just as well as "data" in the second "then"
+getData.then((data) => {
+  const shoutData = data.map(name => name.toUpperCase());
+  return shoutData;
+})
+.then((data) => {
+  console.log(data); // ['DEADPOOL', 'DOMINO', 'BEDLAM', 'SHATTERSTAR', 'NEGASONIC TEENAGE WARHEAD']
+  console.log('------------');
+});
+
+</script>
+</html>

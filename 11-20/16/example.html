@@ -1,0 +1,56 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+      <p class="item odd special">Special Item 1</p>
+      <p class="item">Regular Item 1</p>
+      <p class="item odd last">Regular Item 2</p>
+    </div>
+  </body>
+<script>
+
+// document.querySelector grabs the first instance of whatever matches the query
+const specialItem = document.querySelector('.special');
+console.log(specialItem);
+
+// Let's make a style change on that paragraph ... whoops, this won't work!
+// Because the code below casts a wider net
+specialItem.style.backgroundColor = '#BADA55';
+
+// So let's do it with a setTimeout
+setTimeout(() => {
+  specialItem.style.backgroundColor = '#BADA55';
+}, 1000);
+
+// these commands also work with IDs.
+const reminderGraf = document.querySelector('#reminder');
+reminderGraf.style.fontStyle = 'italic';
+
+// document.querySelectorAll grabs ALL items that match the selector
+const allItems = document.querySelectorAll('.item');
+// This logs a nodelist, which is an Array-like type
+console.log(allItems);
+// Which means we can use forEach on it
+allItems.forEach((item) => {
+  item.innerHTML += ' - additional description'
+  item.style.backgroundColor = '#F3F3F3';
+  item.style.padding = '10px';
+})
+
+// Missing jQuery and don't want to type out those long commands each time?
+// There are two options. 1: use bind
+const qs = document.querySelector.bind(document);
+
+const lastGraf = qs('.last');
+lastGraf.style.fontWeight = '600';
+
+// 2: use a function
+const qsa = (els) => document.querySelectorAll(els);
+
+const oddGrafs = qsa('.odd');
+oddGrafs.forEach((item) => {
+  item.style.textTransform = 'uppercase';
+});
+
+</script>
+</html>

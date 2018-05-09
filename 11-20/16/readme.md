@@ -1,121 +1,89 @@
-### JS Quick Hits: Async / Await
+### JS Quick Hits: Query Selectors
 
-Video Url: https://youtu.be/BvTeHs9Nabs
+Video Url: https://youtu.be/ngCv-HHu0tU
 
-Last week, we talked about promises in ES2015. Today we're going to talk about an ES2017 addition that makes your code looke a lot nicer: `async / await`. We've already seen you how can string together promises with `.then`, but this can still lead to heavy nesting that looks a lot like callback hell. Witness:
-
-```
-doSomething.then((data) => {
-  doSomethingElse(data).then((newData) => {
-    doAThirdThing(newData);
-  });
-});
-```
-
-Or
+After last week's marathon tutorial, I thought we'd do something a little shorter and simpler. We're going to talk about query selectors that allow you to target specific DOM elements. If you come from a jQuery background, you are no doubt very familiar with its venerable `$` selector. Does this code look familiar to you?
 
 ```
-doSomething.then((data) => {
-  return doSomethingElse(data);
+$('#myDiv').show();
+```
+
+Oh yeah! I lived in code like that for years. These days I mostly work with frameworks like React, but sometimes&mdash;for example when I'm writing JavaScript for CloseBrace.com&mdash;I still write non-framework code. I don't use jQuery anymore for a variety of reasons, and instead use "Vanilla JS" (which just means plain ol' JS). In recent years new methods have been introduced that make this a lot easier, and today we're going to talk about two of them. `document.querySelector` and `document.querySelectorAll`.
+
+For this tutorial, we're going to need some HTML, so here it is:
+
+```
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+      <p class="item odd special">Special Item 1</p>
+      <p class="item">Regular Item 1</p>
+      <p class="item odd last">Regular Item 2</p>
+    </div>
+  </body>
+<script>
+</script>
+</html>
+```
+
+Now between those script tags, let's start doin' stuff! `document.querySelector` grabs the first instance of whatever matches the query, so let's get that special paragraph, since there's only one of them.
+
+```
+const specialItem = document.querySelector('.special');
+console.log(specialItem);
+```
+
+When you console log that it'll log what looks like a string of HTML ... but that's not really what you're capturing. What you get is the DOM element, which can be manipulated, like this:
+
+```
+specialItem.style.backgroundColor = '#BADA55';
+```
+
+You don't have to use classes. You can also use IDs, like this:
+
+```
+const reminderGraf = document.querySelector('#reminder');
+reminderGraf.style.fontStyle = 'italic';
+```
+
+Let's say we wanted to grab all of the `item` paragraphs. We'd use `document.querySelectorAll` like this:
+
+```
+const allItems = document.querySelectorAll('.item');
+console.log(allItems);
+```
+
+That'll log the whole `nodelist`, which is an array-like type in JavaScript, which means a lot of the stuff we can do with arrays, we can also do with nodelists. Using `forEach`, for example, like this:
+
+```
+allItems.forEach((item) => {
+  item.innerHTML += ' - additional description'
+  item.style.backgroundColor = '#F3F3F3';
+  item.style.padding = '10px';
 })
-.then((data) => {
-  return doAThirdThing(data);
+```
+
+Oh, if you're doing this all on one page, you'll note that this overrides the color setting on the special item, because it happens later in the code.
+
+Missing jQuery and don't feel like typing out those long commands every time? Just create helper variables at the beginning of your code, and use 'em as much as you want. There are two ways to assign them to shorter variables. You can either use bind, like this:
+
+```
+const qs = document.querySelector.bind(document);
+const lastGraf = qs('.last');
+lastGraf.style.fontWeight = '600';
+```
+
+Or create a function, like this:
+
+```
+const qsa = (els) => document.querySelectorAll(els);
+const oddGrafs = qsa('.odd');
+oddGrafs.forEach((item) => {
+  item.style.textTransform = 'uppercase';
 });
 ```
 
-In a complex app, that can rapidly lead to deep nesting or long strings of `.then` blocks. `async / await` allows us to accomplish basically the same thing without having to go either of those routes, which can save lines and make code more readable. First let's establish some data:
-
-```
-const movieList = ['Alien', 'Aliens', 'Alien 3', 'Alien Resurrection', 'Prometheus', 'Alien Covenant'];
-```
-
-Now, let's write two asynchronous functions using `setTimeout` that resolve promises:
-
-```
-const getMovies = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(movieList);
-    }, 2000);
-  });
-};
-const storeMovies = (movies) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      // Simulating a "successfully stored to the database" response
-      resolve({
-        status: 200,
-        message: 'Success',
-      });
-    }, 2000);
-  });
-};
-```
-
-What we're simulating here is getting some resources (say from an outside API) and then storing them in our own database. We're just using `setTimeout` because we don't have actuall API endpoints to contact via XHR.
-
-Now, we could just use the `.then` method to chain these functions, but let's use `async / await` instead:
-
-```
-const storeReversedMovies = async () => {
-  const movies = await getMovies();
-  const reversedMovies = movies.reverse();
-  const response = await storeMovies(reversedMovies);
-  if (response.status === 200) {
-    console.log(reversedMovies); // our reversed array
-    return;
-  }
-  console.log('Failed');
-};
-storeReversedMovies();
-```
-
-Do you see what we're doing here? We declare the function as `async` on the first line, which allows us to use the `await` keyword within its body. `await` does exactly what it says it does: it holds up the rest of the function from executing until the promise resolves. This means your variables get the values you want, instead of the Promise itself. If you console log a variable that's assigned to a promise WITHOUT `await` you get `Promise-{<pending>}` ... which isn't super useful.
-
-Note that `async / await` requires promises to work. If you have an asynchronous function that doesn't use promises, what happens when you use `await` is: your code generates an unresolved promise that never gets resolved by the function you're calling. It's hard to show this with `setTimeout`, because it doesn't technically return a value, but here's a slightly convoluted version using callbacks to show that it doesn't work:
-
-```
-const noPromiseTimer = (callback) => {
-  setTimeout(() => {
-    const ridleyScottMovies = [movieList[0], movieList[4], movieList[5]];
-    callback(ridleyScottMovies);
-  }, 2000);
-};
-const getScottMovies = async () => {
-  const list = await noPromiseTimer((movies) => {
-    return movies;
-  });
-  return list;
-};
-const scottMovies = getScottMovies();
-console.log(scottMovies); // instantly returns a promise generated by "await" but which is never resolved in "noPromiseTimer"
-```
-
-Last but not least, you can `await` on the variable instead of on the function, which slightly changes how the code runs, and may speed things up. In the working example above, things take a total of about four seconds to execute, because we await the return of the first two-second timer, and then await the turn of the second two-second timer. That makes sense, since our second function call relies on data returned by the first one. However, here's an example that fires in only about two seconds, despite making two calls to a function that takes two seconds to execute:
-
-```
-const takeTooLongToUpperCase = (str) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(str.toUpperCase());
-    }, 2000);
-  });
-};
-
-const upperCaseMovies = async (list) => {
-  const item0 = takeTooLongToUpperCase(list[0]);
-  const item1 = takeTooLongToUpperCase(list[1]);
-  return [await item0, await item1];
-};
-
-// This will log the new array in just 2 seconds, instead of 4, since the two function calls run simultaneously
-upperCaseMovies(movieList).then((newList) =>{
-  console.log(newList); // ['ALIEN', 'ALIENS'];
-});
-```
-
-`async / await` is a powerful new tool to add to your toolbox, especially if you work with a lot of XHR calls, which you probably do if you're working on a single-page app or in a front-end framework like React or Angular.
-
-Next week we're going to scale it back a little and take a look at two DOM manipulation functions. `getQuerySelector` and `getQuerySelectorAll`. See you then!
+That's about it for this week! Next time, we'll talk about some more document methods that help make jQuery less necessary.
 
 *Enjoying these quick hits? You can get them five days early by [subscribing to our weekly newsletter](https://closebrace.com/newsletter/subscribe).*

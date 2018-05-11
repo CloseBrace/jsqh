@@ -1,0 +1,41 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+      <button id="btnClickMe">Click Me!</button>
+      <button id="btnCancel">Cancel</button>
+    </div>
+  </body>
+<script>
+
+// Basic use of getElementById
+const button = document.getElementById('btnClickMe');
+console.log(button); // button element
+
+// But that's boring, so let's add an event listener
+button.addEventListener('click', () => {
+  console.log('Clicked!');
+});
+
+// Let's add a shortcut for document.getElementById
+const getById = (el) => document.getElementById(el);
+
+// Now we can use it
+const cancel = getById('btnCancel');
+cancel.addEventListener('click', () => {
+  console.log('Canceled!');
+});
+
+// Using getElementById can be a problem if the DOM isn't ready
+// The ES5 solution works all the way back to IE8 and looks like this:
+document.addEventListener("DOMContentLoaded", function() {
+  getById('reminder').style.backgroundColor = 'BADA55';
+});
+
+// The ES6 solution looks like this:
+onDOMContentLoaded = (() => {
+  getById('reminder').style.padding = '10px';
+})();
+
+</script>
+</html>

@@ -1,0 +1,73 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+      <h3>Avengers</h3>
+      <ul>
+        <li class="avenger original">Iron Man</li>
+        <li class="avenger original">Captain America</li>
+        <li class="avenger original">Black Widow</li>
+        <li class="avenger original">Thor</li>
+        <li class="avenger original">Hulk</li>
+        <li class="avenger original">Hawkeye</li>
+        <li class="avenger new">Falcon</li>
+        <li class="avenger new">Scarlet Witch</li>
+        <li class="avenger new">War Machine</li>
+        <li class="avenger new">Vision</li>
+        <li class="avenger new">Spider-Man</li>
+        <li class="avenger deceased">Quicksilver</li>
+        <li class="associate">Ant Man</li>
+        <li class="associate">Winter Soldier</li>
+        <li class="associate">Black Panther</li>
+      </ul>
+    </div>
+  </body>
+<script>
+// Shortcut for QuerySelectorAll
+const qsa = (els) => document.querySelectorAll(els);
+
+// First, let's just grab all of the Avengers
+const allAvengers = qsa('.avenger');
+console.log(allAvengers); // nodelist of 12 li tags
+
+console.log('------------');
+
+// Nodelist allows a handful of array functions, like forEach:
+allAvengers.forEach((node) => {
+  node.style.backgroundColor = '#66AAFF';
+})
+
+// But doesn't work with others, like .filter
+try {
+  const originalAvengers = allAvengers.filter((node) => {
+    if (node.classList[1] === 'original') {
+      return true;
+    }
+    return false;
+  });
+}
+catch (error) {
+  console.log(error); // TypeError: allAvengers.filter is not a function
+}
+
+console.log('------------');
+
+// If we want to use array methods, we need to convert to an array
+const allAvengersArray = Array.from(allAvengers);
+const originalAvengers = allAvengersArray.filter((node) => {
+  if (node.classList[1] === 'original') {
+    return true;
+  }
+  return false;
+});
+console.log(originalAvengers); // Array of 6 li tags
+
+console.log('------------');
+
+// You can do this in one step easily enough
+const associatesArray = Array.from(qsa('.associate'));
+const associates = associatesArray.map((item) => item.innerHTML);
+console.log(associates); // ['Ant Man', 'Winter Soldier','Black Panther']
+
+</script>
+</html>

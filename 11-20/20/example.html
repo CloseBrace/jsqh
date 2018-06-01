@@ -1,0 +1,72 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Base object
+const soulsGame = {
+  creator: 'Hidetaka Miyazaki',
+  despair: true,
+  difficulty: 'Hard',
+}
+
+// Let's add a property to the base object
+Object.assign(soulsGame, { hasRemaster: false });
+
+console.log(soulsGame);
+
+console.log('------------');
+
+// You can't overwrite the base object's values at the time of assignment
+Object.assign(soulsGame, { despair: false }); // this won't work
+console.log(soulsGame);
+
+console.log('------------');
+
+// You can assign more than one object at once, but beware overwriting properties
+// This happens because object properties are evaluated by paremeter order
+Object.assign(soulsGame, { hasRemaster: true, isSequel: true }, { isSequel: false });
+console.log(soulsGame);
+
+console.log('------------');
+
+// We can also make derived objects from the base
+// but again, the base object coming second means it'll have the last word
+// so the base object's 'hasRemaster' property will overwrite our attempts to set it
+const first = Object.assign({
+  directors: ['Hidetaka Miyazaki'],
+  name: 'Dark Souls',
+  releaseYear: '2011',
+}, soulsGame);
+
+const second = Object.assign({
+  directors: ['Tomohiro Shibuya', 'Yui Tanimura'],
+  name: 'Dark Souls 2',
+  releaseYear: '2014',
+  hasRemaster: false, // this won't work
+}, soulsGame);
+
+const third = Object.assign({
+  directors: ['Hidetaka Miyazaki', 'Isamu Okano', 'Yui Tanimura'],
+  name: 'Dark Souls 3',
+  releaseYear: '2016',
+  hasRemaster: false, // this won't work
+}, soulsGame);
+console.log(first);
+console.log(second);
+console.log(third);
+
+console.log('------------');
+
+// Let's fix those hasRemaster values
+second.hasRemaster = false;
+third.hasRemaster = false;
+console.log(first);
+console.log(second);
+console.log(third);
+
+</script>
+</html>

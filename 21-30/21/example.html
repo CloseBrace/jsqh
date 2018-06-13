@@ -1,0 +1,98 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Our souls object from the previous tutorial
+const soulsGame = {
+  creator: 'Hidetaka Miyazaki',
+  despair: true,
+  difficulty: 'Hard',
+}
+
+// Object.assign only copies enumerable properties
+console.log(soulsGame.hasOwnProperty('despair')); // true
+
+// So if, for example, it won't overwrite our hasOwnProperty method with the prototype's method
+// Because prototype methods aren't enumerable
+const testSouls = Object.assign({
+  hasOwnProperty: function() {
+    return 'I broke the property chain!';
+  }
+}, soulsGame);
+console.log(testSouls.hasOwnProperty('name')); // I broke the property chain!
+
+console.log('------------');
+
+// Object.assign also doesn't deep-merge
+const soulsSequel = Object.assign({
+  name: 'Dark Souls 4ever',
+  info: {
+    speculative: true,
+  }
+}, soulsGame);
+
+console.log(soulsSequel); // all's well here
+
+const shadowsDieTwice = Object.assign({
+  name: 'Shadows Die Twice',
+  info: {
+    actuallyHappening: true,
+  }
+}, soulsSequel, soulsGame);
+
+console.log(shadowsDieTwice); // this will show speculative, but not actuallyHappening
+
+console.log('------------');
+
+// Cloning deep objects can also be a problem becase Object.assign only creates references
+const skelHitPoints = {
+  skeletons: {
+    regular: 400,
+    giant: 800,
+  },
+};
+
+const soulsHitPoints = Object.assign({
+  rats: {
+    regular: 200,
+    giant: 650,
+  }
+}, skelHitPoints);
+
+console.log(JSON.stringify(soulsHitPoints)); // as expected
+
+soulsHitPoints.skeletons.regular = 450;
+
+console.log(JSON.stringify(soulsHitPoints)); // as expected
+console.log(JSON.stringify(skelHitPoints)); // ... super broken!
+
+
+console.log('------------');
+
+// If you're only supporting ES2017-friendly browsers, (or if you're transpiling)
+// you can also use the object spread operator to combine objects
+const characterStats = {
+  charisma: 8,
+  dexterity: 12,
+  intelligence: 9,
+  luck: 6,
+  strength: 18,
+  wisdom: 9,
+  constitution: 16,
+}
+
+const fullCharacter = {
+  age: 26,
+  name: 'Strongdar',
+  race: 'Giant',
+  ...characterStats,
+}
+
+console.log(fullCharacter); // combined objects
+
+</script>
+</html>

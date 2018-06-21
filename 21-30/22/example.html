@@ -1,0 +1,66 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+const characters = ['Mario', 'Samus', 'Megaman', 'Kirby', 'Link'];
+const nintendoSwitch = new Object({
+  portable: true,
+  price: 299,
+  graphicsCard: 'Nvidia',
+});
+
+// When we access built-in methods, the JavaScript engine automatically pulls them from the prototype
+const shoutCharacters = characters.map((name) => name.toUpperCase());
+console.log(shoutCharacters); // ['MARIO', 'SAMUS', 'MEGAMAN', 'KIRBY', 'LINK']
+
+const hasPropPrice = nintendoSwitch.hasOwnProperty('price');
+console.log(hasPropPrice); // true
+
+console.log('------------');
+
+// Even though strings are primitives, the JS engine wraps them in an Object when evaluating methods
+// So you can do this ...
+const game = 'Super Smash Bros. Ultimate';
+console.log(game.length); // 26
+
+// But not this
+game.myValue = 'test';
+console.log(game.myValue); // undefined
+
+console.log('------------');
+
+// You can create your own object constructors using functions
+// Note: traditionally constructors start with a capital letter
+const SwitchGame = function(price, title) {
+  this.price = price;
+  this.title = title;
+  this.givePrice = function() {
+    return `The price of ${this.title} is $${this.price}`;
+  };
+};
+
+const smashBros = new SwitchGame('54.99', 'Super Smash Bros. Ultimate');
+
+// Note that we're not creating prototype methods here ... givePrice shows up in our child object
+// We'll cover prototype methods next week.
+console.log(smashBros); // SwitchGame {price: "54.99", title: "Super Smash Bros. Ultimate", givePrice: ƒ}
+console.log(smashBros.givePrice()); // The price of Super Smash Bros. Ultimate is $54.99
+
+console.log('------------');
+
+// The prototype chain continues all the way up to methods from the base JS Object
+console.log(smashBros.hasOwnProperty('title')); // true
+
+console.log('------------');
+
+// We can also overwrite prototype values after the fact
+smashBros.price = '59.99';
+console.log(smashBros.givePrice()); // The price of Super Smash Bros. Ultimate is $59.99
+
+
+</script>
+</html>

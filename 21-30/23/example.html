@@ -1,0 +1,60 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Here's a basic constructor (see previous tutorial)
+const Actor = function(name, roles) {
+  this.name = name;
+  this.roles = roles;
+}
+
+// If we want to add a listRoles function, we could do it in the constructor
+// ... but then every child object would contain the method. Let's add it as a prototype instead
+Actor.prototype.listRoles = function() {
+  let str = `${this.name} has played `;
+  const len = this.roles.length;
+  for (i = 0; i < len; i +=1) {
+    str += this.roles[i];
+    if (i === len - 2) {
+      str += ', and ';
+    }
+    else if (i === len - 1) {
+      str += '.';
+    }
+    else {
+      str += ', ';
+    }
+  }
+  console.log(str);
+}
+
+// Create a new actor
+const scarJo = new Actor(
+  'Scarlett Johansson',
+  ['Black Widow', 'Major', 'Lucy', 'Kaa', 'Charlotte' ]
+);
+
+// When we console.log scarJo, our method doesn't show up
+console.log(scarJo);
+
+// But we can still use it! Because it lives up the prototype chain
+scarJo.listRoles();
+
+// Can we go back and add to the prototype even after we've created a child Object?
+Actor.prototype.addAge = function(age) {
+  this.age = age;
+}
+
+// And will it work even with our already built object? Damn right!
+scarJo.addAge(33)
+
+// Note that the addAge method is NOT listed (except under __proto__ where it belongs, but the age now is)
+console.log(scarJo);
+
+
+</script>
+</html>

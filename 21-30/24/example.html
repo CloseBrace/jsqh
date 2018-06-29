@@ -1,0 +1,77 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Let's start with a simple constructor
+const Incredible = function(name, powers, age, hair) {
+  this.name = name;
+  this.powers = powers;
+  this.age = age;
+  this.hair = hair;
+}
+
+// Then create a new object with our constructor
+const mrIncredible = new Incredible('Bob Parr', ['Strength', 'Durability'], 40, 'blond');
+
+// And continue with a simple for ... in loop
+for (let prop in mrIncredible) {
+  console.log(`${prop}: ${mrIncredible[prop]}`);
+} // name: Bob Parr, powers: Strength,Durability, age: 40, hair: blond
+
+console.log('------------');
+
+// Here's the issue: if we add a prototype method, it still gets caught by the loop
+Incredible.prototype.shoutName = function() {
+  console.log(this.name.toUpperCase());
+};
+
+for (let prop in mrIncredible) {
+  console.log(`${prop}: ${mrIncredible[prop]}`);
+} // d'oh ...
+
+console.log('------------');
+
+// This is because the method's enumerable flag is set to true by default
+// But we can change that using Object.defineProperty to change flag settings
+Object.defineProperty(Incredible.prototype, 'shoutName', {
+  enumerable: false,
+});
+
+// And then running our loop again
+for (let prop in mrIncredible) {
+  console.log(`${prop}: ${mrIncredible[prop]}`);
+} // hooray!
+
+console.log('------------');
+
+// And yet, we can still use the prototype method
+mrIncredible.shoutName();
+
+console.log('------------');
+
+// This also works just fine for non-prototype methods
+// (note that you can user defineProperty to create the method, you don't have to create it first)
+Object.defineProperty(mrIncredible, 'listPowers', {
+  value: function() {
+    this.powers.forEach((power, index) => {
+      console.log(`Power ${index + 1}: ${power}`);
+    });
+  },
+});
+
+// The listPowers method doesn't show up
+for (let prop in mrIncredible) {
+  console.log(`${prop}: ${mrIncredible[prop]}`);
+} // hooray! again!
+
+console.log('------------');
+
+// But we can use it
+mrIncredible.listPowers();
+
+</script>
+</html>

@@ -1,0 +1,49 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// basic array
+const incredibles = ['Mr. Incredible', 'Elastigirl', 'Violet', 'Dash', 'Jack-Jack'];
+
+// Simple for loop
+for (let i = 0; i < incredibles.length; i++) {
+  console.log(incredibles[i]);
+} // Mr. Incredible Elastigirl Violet Dash Jack-Jack
+
+console.log('------------');
+
+// The Array.forEach version of that same loop
+incredibles.forEach((name) => {
+  console.log(name);
+}); // Mr. Incredible Elastigirl Violet Dash Jack-Jack
+
+console.log('------------');
+
+// Array with an empty value at position 3
+const villains = ['Syndrome', 'Mirage', 'Bomb Voyage', ,'The Underminer', 'Screenslaver'];
+
+// The for loop logs the blank value
+for (let i = 0; i < villains.length; i++) {
+  console.log(villains[i]);
+} // Syndrome Mirage Bomb Voyage undefined The Underminer Screenslaver
+
+console.log('------------');
+
+// Array.forEach ignores empty values
+villains.forEach((name) => {
+  console.log(name);
+}) // Syndrome Mirage Bomb Voyage The Underminer Screenslaver
+
+console.log('------------');
+
+// It still keeps track of the index, though:
+villains.forEach((name, index) => {
+  console.log(index, name);
+}); // 0 "Syndrome" 1 "Mirage" 2 "Bomb Voyage" 4 "The Underminer" 5 "Screenslaver"
+
+</script>
+</html>

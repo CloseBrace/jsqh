@@ -1,3 +1,7 @@
+### JS Quick Hits: Property Enumerability
+
+Video URL: https://youtu.be/wSiVkvuTVq0
+
 Since we spent the last couple of weeks talking about the prototype chain, it's definitely worth touching on something called property enumerability at the same time. This is a complex topic, but not one that I want to span out over multiple tutorials, so we're only going to touch on certain aspects of it. For example, I'm not going to talk about Symbols at all, because I don't think they're something that's used by most day-to-day JavaScript developers (am I wrong? Do you use Symbols all the time? Hit reply and let me know!).
 
 So, let's talk first about `for ... in`. This is a built-in JavaScript approach to looping through object properties. We'll start by creating a constructor and then instantiating a new object, like we talked about [last week](https://closebrace.com/tutorials/2018-06-27/js-quick-hits-23-prototypes-part-2).

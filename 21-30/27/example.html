@@ -1,0 +1,60 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// These functions don't exist in ES5, so we have to create them
+// Thanks to http://es6-features.org for these functions
+function isNaN(n) {
+  return n !== n;
+};
+function isFinite(n) {
+  return (typeof n === "number" && !isNaN(n) && n !== Infinity && n !== -Infinity);
+};
+function isSafeInteger(n) {
+    return (
+           typeof n === 'number'
+        && Math.round(n) === n
+        && -(Math.pow(2, 53) - 1) <= n
+        && n <= (Math.pow(2, 53) - 1)
+    );
+}
+
+// And then use them as expected
+console.log(isNaN(245)); // false
+console.log(isNaN(NaN)); // true
+
+console.log('------------');
+
+console.log(isFinite(12345)); // true
+console.log(isFinite(Infinity)); // false
+
+console.log('------------');
+
+console.log(isSafeInteger(234)); // true
+console.log(isSafeInteger(16837568937201847)); // false
+
+console.log('------------');
+
+
+// ES2015 introduces built-in methods for isNaN ...
+console.log(Number.isNaN(494)); // false
+console.log(Number.isNaN(NaN)); // true
+
+console.log('------------');
+
+// and isFinite ...
+console.log(Number.isFinite(189563)); // true
+console.log(Number.isFinite(-Infinity)); // false
+
+console.log('------------');
+
+// and isSafeInteger
+console.log(Number.isSafeInteger(125)); // true
+console.log(Number.isSafeInteger(18594048328495704)); // false
+
+</script>
+</html>

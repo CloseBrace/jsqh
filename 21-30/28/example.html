@@ -1,0 +1,58 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Floating point math is weird
+// You can use Number.EPSILON as a margin of error.
+const testValues = (a, b, c) => {
+  const total = a + b - c;
+  if (total < Number.EPSILON) {
+    return true;
+  }
+  return false
+}
+console.log(testValues(0.1, 0.2, 0.3)); // true
+
+console.log('------------');
+
+// Don't want to deal with decimals? You used to have to do something like this:
+function mathTrunc(x) {
+  return (x < 0 ? Math.ceil(x) : Math.floor(x));
+}
+console.log(mathTrunc(4.2576)); // 4
+console.log(mathTrunc(-184.6978483)); // -184
+console.log(mathTrunc(-0.25238)); // -0  (yes ... negative zero)
+
+console.log('------------');
+
+// But now you can just use Math.truncate
+console.log(Math.trunc(84.27592)); // 84
+console.log(Math.trunc(0.987)); // 0
+console.log(Math.trunc(-12.8927)) // -12
+
+console.log('------------');
+
+// To find the sign of a number, you'd need to write your own ES5 function
+function mathSign(x) {
+    return ((x === 0 || isNaN(x)) ? x : (x > 0 ? 1 : -1));
+}
+console.log(mathSign(4.567)); // 1
+console.log(mathSign(-5.39378)); // -1
+console.log(mathSign(0)); // 0
+console.log(mathSign(NaN)); // NaN
+
+console.log('------------');
+
+// ES2015 lets you just use Math.sign
+console.log(Math.sign(649.478329)); // 1
+console.log(Math.sign(-57)); // -1
+console.log(Math.sign(0)); // 0
+console.log(Math.sign(-0)); // -0
+console.log(Math.sign('test' / 'me')); // NaN
+
+</script>
+</html>

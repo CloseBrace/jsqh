@@ -1,0 +1,49 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// If you want to repeat a string in ES5, it's a hacky pain
+console.log(Array(3).join('Let\'s repeat this')); // Let's repeat thisLet's repeat this
+
+console.log('------------');
+
+// ES2015 solves that problem by adding a string repeater method
+console.log('This is better! '.repeat(2)); // This is better! This is better!
+
+console.log('------------');
+
+// You can also use math and variables in there, if you'd like
+const depth = 4;
+console.log('Woohoo! '.repeat(depth / 2)); // Woohoo! Woohoo!
+
+console.log('------------');
+
+// Here's a string to work with
+const str = 'I hope the new Predator movie is actually good.';
+
+// Trying to search for text within a string in ES5 was also a pain
+console.log(str.indexOf('I hope') === 0); // true (the string starts with "I hope")
+console.log(str.indexOf('good.') === str.length - 5); // true (the string ends with "good.")
+console.log(str.indexOf('new Pred') !== -1); // true (the string contains "new Pred" somewhere)
+
+console.log('------------');
+
+// It's much clearer in ES2015
+console.log(str.startsWith('I hope')); // true
+console.log(str.endsWith('good.')); // true
+console.log(str.includes('Predator movie')); // true
+console.log(str.includes('Arnold Schwarzenegger')); // false
+
+console.log('------------');
+
+// You can also use modifiers
+console.log(str.startsWith('hope', 2)); // true (because you're starting two characters in)
+console.log(str.endsWith('hope', 6)); // true (because we're only evaluating the first 6 characters)
+console.log(str.includes('hope', 10)); // false (because we're starting way past where "hope" is)
+
+</script>
+</html>

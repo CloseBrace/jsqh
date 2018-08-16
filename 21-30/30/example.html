@@ -1,0 +1,74 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Some Silversun Pickups Albums
+const albums = ['Pikul', 'Carnavas', 'Swoon', 'Neck of the Woods', 'Seasick', 'Better Nature'];
+const cloneAlbums = albums.map(album => album);
+console.log(cloneAlbums);
+
+// Using a bubble sort would require us to write sorting code to alphabetize properly
+// So let's just use Array.sort, instead. We don't have to write any sorting code at all!
+console.log(albums.sort()); // ["Better Nature", "Carnavas", "Neck of the Woods", "Pikul", "Seasick", "Swoon"]
+
+console.log('------------');
+
+// It also automatically works with numbers.
+const nums = [12, 54, 1, 88, 32, 6, 47, 72, 28];
+console.log(nums.sort()); // [1, 12, 28, 32, 47, 54, 6, 72, 88]
+
+console.log('------------');
+
+// Array.sort can also take a custom sort function that overrides default behavior
+const reverseAlpha = (a, b) => {
+  // ignore case
+  const name1 = a.toUpperCase();
+  const name2 = b.toUpperCase();
+  // if name1 is closer to the beginning of the alphabet
+  if (name1 < name2) {
+    return 1; // move name1 after name2
+  }
+  // if name1 is closer to the end of the alphabet
+  if (name1 > name2) {
+    return -1; // keep name1 where it is
+  }
+  // identical names
+  return 0;
+}
+console.log(albums.sort(reverseAlpha)); // ["Swoon", "Seasick", "Pikul", "Neck of the Woods", "Carnavas", "Better Nature"]
+
+console.log('------------');
+
+// You can use this to sort arrays of objecs
+const silversunPickups = [
+  { name: 'Brian', job: 'vocals' },
+  { name: 'Christopher', job: 'drummer' },
+  { name: 'Joe', job: 'keyboards' },
+  { name: 'Nikki', job: 'bass' },
+];
+
+// custom sort method (note we're accessing a.job and b.job)
+const jobSort = (a, b) => {
+  if ( a.job.toUpperCase() < b.job.toUpperCase() ) { return -1; }
+  if ( a.job.toUpperCase() > b.job.toUpperCase() ) { return 1; }
+  return 0;
+}
+
+console.log(silversunPickups.sort(jobSort));
+/*
+ * Output:
+ *
+ * [
+ *   {"name":"Nikki", "job":"bass"},
+ *   {"name":"Christopher", "job":"drummer"},
+ *   {"name":"Joe", "job":"keyboards"},
+ *   {"name":"Brian", "job":"vocals"}
+ * ]
+ *
+ */
+</script>
+</html>

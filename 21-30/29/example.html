@@ -1,0 +1,48 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Some simple numbers
+const nums = [2, 9, 6, 3, 5, 7, 1, 4, 8];
+
+console.log(nums);
+
+console.log('------------');
+
+// This is how the array would look after one pass of a bubble sort:
+console.log([2, 6, 3, 5, 7, 1, 4, 8, 9]);
+
+console.log('------------');
+
+// Let's write a sorting function!
+const bubbleSort = (items) => {
+  // Make a copy of items to return
+  // PS: hooray, variable destructuring!
+  const copy = [...items]
+  // for loops are super fast, so let's use those
+  // This one determines how many passes to make
+  for (let i = 0; i < copy.length; i += 1) {
+    // This one does the actual checking
+    for (let x = 0; x < (copy.length - i - 1); x += 1) {
+      // compare items and only swap them if the second one's smaller
+      if (copy[x] > copy[x + 1]) {
+        let first = copy[x]; // store the first number
+        let second = copy[x + 1]; // store the second number
+        // now swap 'em
+        copy[x] = second;
+        copy[x + 1] = first;
+      }
+    }
+  }
+  return copy;
+};
+
+// Let's use a bubble sort function!
+console.log(bubbleSort(nums));
+
+</script>
+</html>

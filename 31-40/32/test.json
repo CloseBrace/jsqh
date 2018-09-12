@@ -1,0 +1,10 @@
+[
+  { "username": "CaptainCode" },
+  { "age": 34 },
+  { "email": "cap@therealcaptaincode.com" },
+  { "fullName": "Leslie Smith" },
+  { "favoriteColor": "Blue" },
+  { "petType": "Hamster" },
+  { "petName": "Mr. Chunkles" },
+  { "booleanFan": true }
+]

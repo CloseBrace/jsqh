@@ -1,0 +1,17 @@
+{
+  "name": "closebrace-test-cbuecheler",
+  "version": "1.0.0",
+  "description": "A simple module that sorts arrays of objects by key in ascending or descending order.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "test",
+    "array",
+    "sort",
+    "no-dependencies"
+  ],
+  "author": "Christopher Buecheler",
+  "license": "ISC"
+}

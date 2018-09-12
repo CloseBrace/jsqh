@@ -1,0 +1,56 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// some data to work with
+var card = [
+  { name: 'test 1', hrs: '0' },
+  { name: 'test 2', hrs: '12' },
+  { name: 'test 3' },
+  { name: 'test 4', hrs: '8' },
+  { name: 'test 5', hrs: '3' },
+  { name: 'test 6', hrs: '22' },
+];
+
+// The original function
+var hrsCount = card.reduce(function (memo, Card) {
+  if (Card.hrs) {
+    return memo + parseInt(Card.hrs);
+  } else {
+    return memo + 0;
+  }
+}, 0);
+console.log(hrsCount) // 45
+
+console.log('------------');
+
+// The refactored function
+const hrsCount2 = card.reduce((memo, Card) => Card.hrs ? memo + parseInt(Card.hrs) : memo, 0);
+console.log(hrsCount2) // 45
+
+console.log('------------');
+
+// A slightly more readable refactor that ditches the implicit return
+// Also we start at 15 instead of 0
+const hrsCount3 = card.reduce((memo, Card) => {
+  return Card.hrs ? memo + parseInt(Card.hrs) : memo;
+}, 0);
+console.log(hrsCount3) // 45
+
+console.log('------------');
+
+// And finally, a refactor that uses no ES6 or ternary operators
+var hrsCount4 = card.reduce(function (memo, Card) {
+  if (Card.hrs) {
+    return memo + parseInt(Card.hrs);
+  }
+  return memo;
+}, 15);
+console.log(hrsCount4) // 60
+
+</script>
+</html>

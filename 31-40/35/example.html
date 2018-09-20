@@ -1,0 +1,39 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+const movies = ['Mission: Impossible', 'Mission: Impossible 2', 'Mission: Impossible 3', 'Mission: Impossible Ghost Protocol', 'Mission: Impossible Rogue Nation'];
+
+// Let's add the latest film to the array ... with a typo
+movies.push('Mission: Impossible Falout');
+console.log(movies); // MI, MI2, MI3, Ghost Protocol, Rogue Nation, Falout
+
+console.log('------------');
+
+// Whoops, let's remove that typo entry
+const removedValue = movies.pop();
+console.log(removedValue); // Mission Impossible: Falout
+console.log(movies); // MI, MI2, MI3, Ghost Protocol, Rogue Nation
+
+console.log('------------');
+
+// And we'll re-add the final film, this time spelled correctly
+movies.push('Mission: Impossible Fallout');
+console.log(movies); // MI, MI2, MI3, Ghost Protocol, Rogue Nation, Fallout
+
+console.log('------------');
+
+// Reminder that push and pop are destructive. They change the original array.
+// If you want to keep the original array pristine, you can clone with destructuring
+const moviesToEdit = [...movies];
+for (let i = 0; i < 3; i += 1) {
+  moviesToEdit.pop();
+}
+console.log(movies); // MI, MI2, MI3, Ghost Protocol, Rogue Nation, Fallout
+console.log(moviesToEdit); // MI, MI2, MI3
+
+</script>

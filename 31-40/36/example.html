@@ -1,0 +1,65 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// This example begins the same as #34, but covers different subjects
+
+// some data to work with
+var card = [
+  { name: 'test 1', hrs: '0' },
+  { name: 'test 2', hrs: '12' },
+  { name: 'test 3' },
+  { name: 'test 4', hrs: '8' },
+  { name: 'test 5', hrs: '3' },
+  { name: 'test 6', hrs: '22' },
+];
+
+// The original function
+var hrsCount = card.reduce(function (memo, Card) {
+  if (Card.hrs) {
+    return memo + parseInt(Card.hrs);
+  } else {
+    return memo + 0;
+  }
+}, 0);
+console.log(hrsCount) // 45
+
+console.log('------------');
+
+// There's an even better way to refactor this code without a ternary operator!
+const hrsCount2 = card.reduce((memo, Card) => memo + parseInt(Card.hrs || 0), 0);
+console.log(hrsCount2); // 45
+
+console.log('------------');
+
+// We can get away with putting the logical operator into the parseInt because parseInt(0) === 0.
+// But we could do it like this, too ... it's just more confusing.
+const hrsCount3 = card.reduce((memo, Card) => memo + (parseInt(Card.hrs) || 0), 0);
+console.log(hrsCount3); // 45
+
+console.log('------------');
+
+// Logical operators are handy shortcuts for not-so-useful ternary operators, like this:
+const input = {
+  name: 'myInput',
+  val: 'testing',
+};
+// these two consts are identical
+const showButton = input.val && input.val.length > 1 ? true : false;
+const showButton2 = input.val && input.val.length > 1;
+console.log(showButton); // true
+console.log(showButton2); // true
+
+console.log('------------');
+
+// Here are a few more logical operators
+console.log(5 > 1 && 10 > 6); // true
+console.log(5 > 1 && 10 < 6); // false
+console.log(5 > 1 || 10 > 6); // true
+console.log(5 > 1 || 10 < 6); // true
+
+</script>

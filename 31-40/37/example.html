@@ -1,0 +1,35 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Example of a method that mutates array data
+const nums = [0, 1, 2, 3, 4, 5];
+nums.push(6);
+console.log(nums); // 0, 1, 2, 3, 4, 5, 6
+
+console.log('------------');
+
+// Example of a method that does NOT mutate array data, instead creating a new array
+const pastries = ['croissant', 'pain au chocolat', 'cheddar biscuit', 'cherry danish'];
+const cPastries = pastries.filter(pastry => pastry.charAt(0) === 'c');
+console.log(pastries); // croissant, pain au chocolat, cheddar biscuit, cherry danish
+console.log(cPastries); // croissant, cheddar biscuit, cherry danish
+
+console.log('------------');
+
+// Strings in JavaScript are immutable by default
+let str = 'I enjoy pastries.';
+str.slice(8, 16);
+console.log(str); // I enjoy pastries.
+const excerpt = str.slice(8, 16);
+console.log(excerpt); // pastries
+console.log(str); // I enjoy pastries.
+str = 'I also enjoy eggs and bacon.';
+console.log(str); // I also enjoy eggs and bacon.
+
+
+</script>

@@ -1,0 +1,52 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// You've probably used the ++ operator in for loops before ...
+for (let i = 0; i < 10; i++) {
+    console.log(i);
+}
+
+console.log('------------');
+
+// Be careful with assignments. If used after the variable, ++ and -- fire *after* the assignment
+let a = 15;
+let b = a++;
+console.log(b); // 15
+console.log(a); // 16
+
+console.log('------------');
+
+// If you use them before the variable, they'll happen before the assignment
+let r = 20;
+let s = ++r;
+let t = --r;
+let u = r--;
+console.log(r); // 19
+console.log(s); // 21
+console.log(t); // 20
+console.log(u); // 20
+
+console.log('------------');
+
+// Here's a step-through process showing the value of our base variable as the operators are used
+
+let n = 84;
+console.log(n); // 84
+
+let o = n++;
+console.log(o); // 84
+console.log(n); // 85
+
+let p = ++n;
+console.log(p); // 86
+console.log(n); // 86
+
+let q = n--;
+console.log(q) // 86
+console.log(n) // 85
+</script>

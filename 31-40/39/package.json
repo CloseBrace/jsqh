@@ -1,0 +1,13 @@
+{
+  "name": "immutable-js-test",
+  "version": "0.0.1",
+  "description": "A simple test of immutable.js's list datatype",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "immutable": "^3.8.2"
+  }
+}

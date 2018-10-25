@@ -1,0 +1,75 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// You can use Object.freeze to freeze an object
+const game = {
+  genre: 'Action',
+  numEditions: 7,
+  rating: 'M',
+  releaseDate: 'October 5th, 2018',
+  setting: 'Greece',
+  title: 'Assassin\'s Creed Odyssey',
+};
+
+console.log(game); // the object
+
+Object.freeze(game);
+
+game.genre = 'Action-Adventure'; // throws an error in strict mode
+delete game.rating;
+
+console.log(game); // still the original object
+
+console.log('------------');
+
+// You can modify a clone of a frozen object!
+const newGame = {...game};
+newGame.genre = 'Action-Adventure';
+delete newGame.rating;
+console.log(newGame); // modified object
+
+console.log('------------');
+
+// Mutable data can make using multiple functions confusing!
+const logArrays = () => {
+  const nums = [1, 2, 3, 4, 5];
+  console.log(nums); // 1, 2, 3, 4, 5
+  const newNums = addOne(nums);
+  console.log(newNums); // 1, 2, 3, 4, 5, 6
+  console.log(nums); // 1, 2, 3, 4, 5, 6
+}
+
+// This other function is modifying our original array!
+const addOne = (arr) => {
+  arr.push(arr.length + 1);
+  return arr;
+}
+
+logArrays(); // ... d'oh.
+
+console.log('------------');
+
+// Here's a better, immutable-style approach
+const logArraysFixed = () => {
+  const nums = [1, 2, 3, 4, 5];
+  console.log(nums); // 1, 2, 3, 4, 5
+  const newNums = addOneFixed(nums);
+  console.log(newNums); // 1, 2, 3, 4, 5, 6
+  console.log(nums); // 1, 2, 3, 4, 5
+}
+
+// Just add a line to clone the original array
+const addOneFixed = (arr) => {
+  const newArr = [...arr];
+  newArr.push(arr.length + 1);
+  return newArr;
+}
+
+logArraysFixed(); // much better!
+
+</script>

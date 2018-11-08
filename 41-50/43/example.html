@@ -1,0 +1,60 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Semicolons in JavaScript are optional - the JS engine will insert them automatically
+const a = true
+const b = false
+if (a || b) console.log('At least one is true') // at least one is true
+
+console.log('------------');
+
+// This is functionally identical to the code above.
+const c = true;
+const d = false;
+if (c || d) { console.log('At least one is true'); } // at least one is true
+
+console.log('------------');
+
+// Example code from Dead Simple React Native (http://deadsimplereactnative.com)
+// Commented out so it doesn't break this example
+/*
+try {
+  formattedImage = await ImageManipulator.manipulate(
+    initialImage,
+    [{ resize: { width: 400, height: 400 } }],
+    { base64: false },
+  );
+}
+*/
+
+// Here's some code with semis that works fine
+function createStringVariants(str) {
+  return {
+    original: str,
+    uCase: str.toUpperCase(),
+    lCase: str.toLowerCase(),
+    reversed: str.split('').reverse().join(''),
+  };
+}
+console.log(createStringVariants('Kill Bill Volume 1')); // object
+
+console.log('------------');
+
+// Be careful of automatic semicolon insertion on the browser's end!
+function getStringInfo(str) {
+  return // whoops ... JS inserts a semicolon here, causing the function to return
+  {
+      length: str.length
+  }
+}
+console.log(getStringInfo('Kill Bill Volume 2')) // undefined
+
+
+
+</script>
+</html>

@@ -1,0 +1,67 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Let's get verbose up in this house!
+for (let i = 1; i < 101; i +=1) {
+  let output = i;
+  if (i % 3 === 0) {
+    output = 'Fizz';
+  }
+  if (i % 5 === 0) {
+    output = 'Buzz';
+  }
+  if (i % 3 === 0 && i % 5 === 0) {
+    output = 'FizzBuzz';
+  }
+  console.log(output);
+}
+
+console.log('------------');
+
+// Same length, but slighly smarter logic
+for (let i = 1; i < 101; i +=1) {
+  let output = ''
+  if (i % 3 === 0) {
+    output += 'Fizz';
+  }
+  if (i % 5 === 0) {
+    output += 'Buzz';
+  }
+  if (output.length < 1) {
+    output = i;
+  }
+  console.log(output);
+}
+
+console.log('------------');
+
+// Now let's get a bit fancy.
+for (let i = 1; i < 101; i +=1) {
+  let output = '';
+  output += i % 3 === 0 ? 'Fizz' : '';
+  output += i % 5 === 0 ? 'Buzz' : '';
+  output = output.length < 1 ? i : output;
+  console.log(output);
+}
+
+
+console.log('------------');
+
+// Now let's get very fancy ...
+for (let i = 1; i < 101; i +=1) {
+  let output = ((i % 3 === 0 ? 'Fizz' : '') + (i % 5 === 0 ? 'Buzz' : '')) || i;
+  console.log(output);
+}
+
+console.log('------------');
+
+// Now let's get unreadably fancy!
+for (let i = 1; i < 101; i +=1) { console.log(((i % 3 === 0 ? 'Fizz' : '') + (i % 5 === 0 ? 'Buzz' : '')) || i); }
+
+</script>
+</html>

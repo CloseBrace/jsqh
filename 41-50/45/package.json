@@ -1,0 +1,13 @@
+{
+  "name": "fs-test-2",
+  "version": "0.0.1",
+  "description": "A simple test of node's built-in filesystem, part two",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.8"
+  }
+}

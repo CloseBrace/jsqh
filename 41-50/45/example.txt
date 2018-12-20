@@ -1,0 +1,1 @@
+This is an example of a simple text file, which can be read and parsed by Node.js

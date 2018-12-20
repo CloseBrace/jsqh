@@ -1,0 +1,68 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Here's a simple object with nested info. Let's use the top 15 movies of 2018 (by US gross)
+const movies2018 = {
+  disney: {
+    antManAndTheWasp: 216648740,
+    blackPanther: 700059566,
+    incredibles2: 608549440,
+    avengersInfinityWar: 678815482,
+    solo: 213767512,
+  },
+  fox: {
+    bohemianRhapsody: 164985592,
+    deadpool2: 318491426,
+  },
+  paramount: {
+    aquietplace: 188024361,
+    missionImpossibleFallout: 220159104,
+  },
+  sony: {
+    hotelTransylvania3: 167510016,
+    venom: 212300606,
+  },
+  universal: {
+    jurassicWorldFallenKingdom: 416769345,
+    theGrinch: 204576230,
+  },
+  warner: {
+    aStarIsBorn: 193918438,
+    crazyRichAsians: 173950732,
+  },
+};
+
+// Now let's sum up all the money made by these films using a recursive function!
+function sumMovies(value) {
+  if (typeof value === 'object') {
+    let sum = 0;
+    for (let subVal of Object.values(value)) {
+      sum += sumMovies(subVal);
+    }
+    return sum;
+  }
+  else {
+    return value;
+  }
+}
+
+const total = sumMovies(movies2018);
+console.log(total); // 4678526590
+
+console.log('--------------------');
+
+// Let's format that total, because why not?
+const toUSD = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+
+const usdTotal = toUSD.format(total);
+console.log(usdTotal); // $4,678,526,590.00
+
+</script>

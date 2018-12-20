@@ -1,0 +1,35 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Here's a basic recursive function that doesn't use a lot of math
+function shoutHello(howManyTimes) {
+  if (howManyTimes === 0) { return; }
+  console.log('Hello!');
+  shoutHello(--howManyTimes);
+}
+shoutHello(5); // Hello! ... five times
+
+// Here's a more complex recursion that does a bit of math to create a Fibonacci Sequence
+const fibonacciArray = (steps, count = 0, array = []) => {
+  if (count === steps) { return console.log(array); }
+  if (count < 2) {
+    array.push(count);
+  }
+  else {
+    array.push(array[count - 1] + array[count - 2]);
+  }
+  count = count + 1;
+  fibonacciArray(steps, count, array);
+}
+fibonacciArray(12); // [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+
+// Exercise: if you pass an array that already has values in it, it breaks the sequence.
+// Can you make it so that the Fibonnaci Sequence just gets appended to the end of the array?
+
+</script>
+</html>

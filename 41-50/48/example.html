@@ -1,0 +1,52 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">The code for this tutorial can't run. It's all just example code. Please view source or open it in a text editor.</p>
+    </div>
+  </body>
+<script>
+
+// Here's a typical REST call.
+
+fetch('https://mysite.com/myapi/movies/2018')
+  .then(resp => JSON.parse(resp))
+  .then((data) => {
+    const newData = data.map(item => {
+      const { id, title, worldwideGross } = item;
+      return {
+        id,
+        title,
+        worldwideGross,
+      };
+    });
+    return newData.length > 0 ? newData : null;
+  });
+
+// REST APIs might return a lot of data. For example, this pseudo-code:
+
+{
+  id: '1234567890',
+  title: 'Movie Title',
+  release date: '23 May 2018',
+  actors: [Array of Actor Objects],
+  director: { Director Object },
+  studio: 'Moneybags Inc.',
+  producers: [Array of Producer Objects],
+  budget: 125000000,
+  usGross: 76848396
+  worldwideGross: 1458027383
+}
+
+// But what if we don't want to get all that data and then discard most of it via the .map above?
+// GraphQL gives fine-grained control
+{
+  movie {
+    id
+    title
+    worldwideGross
+  }
+}
+
+
+
+</script>

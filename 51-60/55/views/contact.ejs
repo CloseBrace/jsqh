@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Send your message!</p>
+    <form action="/contact" method="post">
+      <fieldset>
+        <input type="text" name="name" placeholder="Your Name" /><br />
+        <textarea name="message" placeholder="Your Message" maxlength="250"></textarea>
+      </fieldset>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

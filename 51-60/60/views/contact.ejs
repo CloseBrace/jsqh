@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <form method="post" action="/contact">
+      <fieldset>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="inputName" placeholder="Leslie Smith" />
+        <label for="email">Email</label>
+        <input type="email" name="email" id="inputEmail" placeholder="captaincode@closebrace.com" />
+        <label for="message">Message</label>
+        <textarea name="message" id="inputMessage" placeholder="Your message here" maxlength="500"></textarea>
+        <div class="center"><button type="submit" id="btnSubmit">Submit</button></div>
+      </fieldset>
+    </form>
+  </body>
+</html>

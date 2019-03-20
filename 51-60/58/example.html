@@ -1,0 +1,90 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// We have to simulate a querystring for this to work because loading locally is stupid
+const querystring = '?username=CaptainCode&id=12345&email=captaincode@closebrace.com';
+
+// The old way of dealing with the querystring
+const getQueryStringData = (qString) => {
+  const qStringObj = {};
+
+  // if we don't pass a value, get it from the URL
+  if (!qString) {
+    qString = window.location.search;
+  }
+
+  // remove unnecessary question mark if it's there
+  qString = qString.charAt(0) === '?' ? qString.substr(1) : qString;
+
+  // Generate an array of key/value pairs
+  const params = qString.split('&');
+
+  // Turn each param into an array and then use those values as key/value pairs
+  params.forEach(param => {
+    const arr = param.split('=');
+    qStringObj[arr[0]] = arr[1];
+  })
+
+  return qStringObj;
+}
+
+// Our querystring, neatly sorted into an object
+console.log(getQueryStringData(querystring));
+console.log('----------------');
+
+// But now it's much easier! One line!
+const urlParams = new URLSearchParams(querystring);
+
+// This won't work, though. urlParams isn't just an object
+console.log(urlParams); // UrlSearchParams {}
+console.log('----------------');
+
+// It's much more powerful than that
+console.log(urlParams.get('username')); // CaptainCode
+console.log('----------------');
+
+urlParams.forEach(val => { console.log(val) }); // CaptainCode, 12345, captaincode@closebrace.com
+console.log('----------------');
+
+console.log(urlParams.has('email')); // true
+console.log('----------------');
+
+for (entry of urlParams.entries()) {
+  console.log(entry); // ['username', 'CaptainCode'], ['id', 12345], ['email', 'captaincode@closebrace.com']
+}
+console.log('----------------');
+
+for (key of urlParams.keys()) {
+  console.log(key); // username, id, email
+}
+console.log('----------------');
+
+for (value of urlParams.values()) {
+  console.log(value); // CaptainCode, 12345, captaincode@closebrace.com
+}
+console.log('----------------');
+
+// You can also set, append and delete
+urlParams.set('username', 'CaptainCode2');
+console.log(urlParams.get('username')); // CaptainCode 2
+console.log('----------------');
+
+urlParams.append('age', '31');
+console.log(urlParams.get('age')); // 31
+console.log('----------------');
+
+urlParams.delete('age');
+console.log(urlParams.has('age')); // false
+console.log('----------------');
+
+
+// Note that URLSearchParams doesn't work in IE or on Edge Mobile (it's fine on Edge desktop)
+// So if you need to support those browsers, stick to the old method
+
+</script>
+</html>

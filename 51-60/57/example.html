@@ -1,0 +1,50 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+      <button id="btnClickMe">Click Me!</button>
+      <div id="divMouseCatch" style="margin: 2em 1em; padding: 1em; background: #DDD; width: 300px; text-align: center;">Mouse Over Me!</div>
+    </div>
+  </body>
+<script>
+
+// so we don't have to keep typing document.getElementById
+const gbid = (id) => document.getElementById(id);
+
+// get the button and div elements
+const button = gbid('btnClickMe');
+const div = gbid('divMouseCatch');
+
+// attach a click listener to it
+button.addEventListener('click', () => {
+  console.log('Well clicked, sir or madam!');
+});
+
+// event listeners can be stacked! They will generally run sequentially but beware async activity
+button.addEventListener('click', () => {
+  console.log('One click has generated two clicks');
+});
+
+// You can use named functions with event listeners ...
+const myFunc = () => {
+  console.log('You moused over the box!');
+  // see below - this removes the event listener, so the box will only catch a mouseover once
+  deactivateBox();
+}
+div.addEventListener('mouseenter', myFunc);
+
+// ... which is valuable because that allows you to remove an individual listener
+const deactivateBox = () => {
+  div.removeEventListener('mouseenter', myFunc);
+}
+
+// Events by default return a bunch of event info, which you can pass to your function
+div.addEventListener('click', (event) => {
+  console.log('Hey, no one told you to click this!');
+  console.log(event);
+});
+
+
+
+</script>
+</html>

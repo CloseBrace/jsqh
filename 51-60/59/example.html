@@ -1,0 +1,42 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Note: you really need to read the tutorial to understand why some of these examples do what they do.
+
+// Beware accidental globals!
+(function() {
+  let captainAmerica = blackWidow = 'Super Hero'
+  console.log(captainAmerica); // Super Hero
+  console.log(blackWidow); // Super Hero
+})()
+console.log(blackWidow); // Super Hero ... oops! We escaped our IIFE!
+// We can't console.log captainAmerica here because it's undefined and will stop script execution
+// So let's just prove it's undefined
+console.log(typeof captainAmerica === 'undefined'); // true
+
+console.log('-----------------');
+
+// Fun with arrays
+let avengers = ['Black Widow', 'Captain America', 'Hawkeye', 'Hulk', 'Iron Man', 'Thor'];
+const moreAvengers = ['Falcon', 'Scarlet Witch', 'Spider-Man', 'Vision'];
+const pseudoAvengers = ['Black Panther', 'Dr. Strange', 'War Machine', 'White Wolf'];
+// (I probably forgot some ... there are a lot of Avengers!)
+
+// Let's combine our teams!
+avengers.push(moreAvengers, pseudoAvengers);
+console.log(avengers); // D'oh. An array of strings with two arrays at the end
+
+// (ok, so let's reset avengers and try again)
+avengers = ['Black Widow', 'Captain America', 'Hawkeye', 'Hulk', 'Iron Man', 'Thor'];
+
+// Here's the easiest (es6) way to do it right:
+const avengersAssembled = [...avengers, ...moreAvengers, ...pseudoAvengers];
+console.log(avengersAssembled); // there we go!
+
+</script>
+</html>

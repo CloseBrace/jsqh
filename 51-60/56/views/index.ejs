@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <p>
+      The sum of five plus seven equals:
+      <%
+        var sum = 5 + 7;
+      %>
+      <%= sum %>
+    </p>
+    <p>
+      <%
+        if (Math.random() >= 0.5) {
+      %>
+          <span>Number is above or equal to 0.5!</span>
+      <%
+        }
+        else {
+      %>
+          <span>Number is below 0.5!</span>
+      <%
+        }
+        %>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// This function throws an error
+function throwError() {
+  throw new Error('Oh, no, what have you done?!');
+}
+
+function successResponse() {
+  return 'Hey, that worked!';
+}
+
+// This is just going to stop execution of our entire script if you uncomment it.
+// throwError();
+// console.log(successResponse); // we'll never get to this.
+
+// We try something, and if it produces an error, we catch it and do something with it
+try {
+  throwError();
+  console.log(successResponse()); // doesn't run
+}
+catch (error) {
+  console.log('The server responded with: ' + error.message);
+}
+
+console.log('------------------------');
+
+// If you want to continue on after an error, you can use finally
+try {
+  throwError();
+}
+catch (error) {
+  console.log('Again, the server says: ' + error.message);
+}
+finally {
+  console.log(successResponse()); // this runs!
+}
+
+</script>
+</html>

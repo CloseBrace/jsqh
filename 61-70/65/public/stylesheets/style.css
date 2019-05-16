@@ -1,0 +1,12 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+fieldset{background:#EEE;border:1px solid #CCC;display:block;font-size:1.5rem;line-height:1.6;margin:0 auto 0.5rem;padding:30px;width:362px}label{color:#888;display:block;font-weight:normal}input[type=email],input[type=text],textarea{background:#FFF;border:1px solid #CCC;font-size:1.25rem;margin-bottom:1rem;padding:5px 10px;width:400px}textarea{height:200px}input::placeholder,textarea::placeholder{color:#DDD}button{background:#00B7FF;border-radius:15px;border:none;color:#FFF;cursor:pointer;font-size:1.5rem;padding:15px}.center{text-align:center}
+
+input[type=email],input[type=text]{margin-bottom:0}.form-group{margin-bottom:1rem}.has-success .form-control{border-bottom:1px solid #CCC}.has-danger .form-control{border:1px solid #dc1d34}.form-group .text-help{color:#dc1d34;font-size:1rem}.pristine-error{display:table}
+
+.success-message{background:#EFE;border:1px solid #0A0;color:#0A0;display:none;font-size:1rem;margin:0 0 1rem;padding:30px}.error-message{background:#FEE;border:1px solid #A00;color:#A00;display:none;font-size:1rem;margin:0 0 1rem;padding:30px}.error-message ul{margin-bottom: 0}

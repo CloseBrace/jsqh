@@ -1,0 +1,44 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+const error = new Error('An error message goes here');
+
+// Let's throw a basic error
+try {
+  throw new Error('You done screwed up, buddy!');
+}
+catch (error) {
+  console.log('name: ' + error.name);
+  console.log('message: ' + error.message);
+  console.log('constructor: ', error.constructor);
+}
+
+
+// You can throw specific types of errors
+try {
+  throw new RangeError('Value was not within expected parameters.');
+}
+catch (error) {
+  console.log('name: ' + error.name);
+  console.log('message: ' + error.message);
+}
+
+// Here's a type error
+try {
+  const myObj = {
+    myString: 'test',
+  }
+  console.log(myObj.myString());
+} catch (error) {
+  console.log(error instanceof TypeError); // true
+  console.log(error.name); // "SyntaxError"
+  console.log(error.message); // "myObj.myString is not a function"
+}
+
+</script>
+</html>

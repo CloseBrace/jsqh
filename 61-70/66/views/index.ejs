@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div>
+      <p>Which is your favorite (available) Avenger?</p>
+      <form>
+        <label><input type="radio" id="ironman" name="avenger">Iron Man</label><br />
+        <label><input type="radio" id="captainamerica" name="avenger">Captain America</label><br />
+        <label><input type="radio" id="thor" name="avenger">Thor</label><br />
+        <label><input type="radio" id="blackwidow" name="avenger">Black Widow</label><br />
+        <label><input type="radio" id="hulk" name="avenger">Hulk</label><br />
+        <label><input type="radio" id="warmachine" name="avenger">War Machine</label><br />
+        <label><input type="radio" id="antman" name="avenger">Ant-Man</label><br />
+        <label><input type="radio" id="rocket" name="avenger">Rocket</label><br />
+        <label><input type="radio" id="nebula" name="avenger">Nebula</label><br />
+        <label><input type="radio" id="captainmarvel" name="avenger">Captain Marvel</label><br />
+        <button id="btnSaveChoice">Save</button>
+      </form>
+    </div>
+  </body>
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Get button by ID
+  const btn = document.getElementById('btnSaveChoice');
+
+  // Catch button click
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    setChoice();
+  });
+
+  // Read cookie values and convert them to an object
+  const cookies = {}
+  document.cookie.split('; ').forEach(cookie => {
+    const cookieArray = cookie.split('=');
+    cookies[cookieArray[0]] = cookieArray[1];
+  });
+
+  // If the avengers cookie exists, check the appropriate radio button
+  if (cookies.avenger) {
+    document.getElementById(cookies.avenger).checked = true;
+  }
+
+});
+
+const setChoice = () => {
+  const avenger = document.querySelector('input[name="avenger"]:checked').id;
+  document.cookie = `avenger=${avenger}; expires=Tue, 31 Dec 2030 23:59:58 UTC;`;
+}
+
+</script>
+</html>

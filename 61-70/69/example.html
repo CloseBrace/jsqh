@@ -1,0 +1,58 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Create a custom error
+class XHRError extends Error {
+  constructor(status, url = 'unknown', ...params) {
+    // We need to send extra arguments up to the parent constructor
+    super(...params);
+
+    // V8 lets us retain the stack trace
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, XHRError);
+    }
+
+    this.name = 'XHR Error';
+    this.status = status;
+    this.url = url;
+  }
+}
+
+try {
+  throw new XHRError(
+    500,
+    'https://my.custom.api.com.edu/api',
+    'Server Error: Could Not Connect to Database',
+  );
+}
+catch (error) {
+  console.log(error.name); // XHR Error
+  console.log(error.status); // 500
+  console.log(error.message); // Server Error: Could Not Connect to Database
+  console.log(error.url); // https://my.custom.api.com.edu/api
+}
+
+console.log('-------------');
+
+// Note that status retains "undefined" while "url" populates with the default ("unknown")
+try {
+  throw new XHRError(
+    undefined,
+    undefined,
+    'An unidentified error has occurred',
+  )
+}
+catch (error) {
+  console.log(error.name); // XHR Error
+  console.log(error.status); // undefined
+  console.log(error.message); // An unidentified error has occurred
+  console.log(error.url); // unknown
+}
+
+</script>
+</html>

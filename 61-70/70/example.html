@@ -1,0 +1,72 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+const eightiesMoviesThatHoldUp = [
+    'Aliens',
+    'Big Trouble in Little China',
+    'Ghostbusters',
+    'Labyrinth',
+    'Mad Max Beyond Thunderdome',
+    'The Goonies',
+    'The Lost Boys',
+];
+const yearSelected = 1986;
+const movieSelected = 'Aliens';
+
+// Set local storage items. Note: all values get converted to strings!
+localStorage.setItem('moviesArray', eightiesMoviesThatHoldUp);
+localStorage.setItem('movie', movieSelected);
+localStorage.setItem('year', yearSelected);
+
+
+// Retrieve items from local storage.
+const moviesArray = localStorage.getItem('moviesArray');
+const movie = localStorage.getItem('movie');
+const year = localStorage.getItem('year');
+
+console.log(moviesArray);
+console.log(movie);
+console.log(year);
+
+console.log('--------------');
+
+// Parse those strings back into workable JavaScript
+console.log(moviesArray.split(','));
+console.log(movie);
+console.log(parseInt(year, 10));
+
+console.log('--------------');
+
+// Want to update an item in local storage? Just overwrite it!
+localStorage.setItem('movie', 'Labyrinth');
+const newMovie = localStorage.getItem('movie');
+console.log(newMovie); // Labyrinth
+
+console.log('--------------');
+
+// Want to delete an item? We can do that.
+localStorage.removeItem('moviesArray');
+const newMoviesArray = localStorage.getItem('moviesArray');
+console.log(newMoviesArray); // null ... womp womp!
+
+console.log('--------------');
+
+// Want to delete EVERYTHING from local storage (for this domain)? Sure!
+localStorage.clear();
+
+const finalMoviesArray = localStorage.getItem('moviesArray');
+const finalMovie = localStorage.getItem('movie');
+const finalYear = localStorage.getItem('year');
+
+console.log(finalMoviesArray);
+console.log(finalMovie);
+console.log(finalYear);
+
+
+</script>
+</html>

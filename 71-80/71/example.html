@@ -1,0 +1,29 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+const teams = ['New Orleans Pelicans', 'Memphis Grizzlies', 'Los Angeles Lakers', 'New York Knicks'];
+
+const nameIsShort = (str) => {
+  return str.length < 16;
+}
+const index = teams.findIndex(nameIsShort);
+console.log(index); // 3
+
+console.log('---------------');
+
+const indexLakers = teams.indexOf('Los Angeles Lakers');
+console.log(indexLakers); // 2
+
+console.log('---------------');
+
+const employees = ['Bob', 'Sarah', 'Jason', 'Tina', 'Bob', 'Lindsay', 'Terrence', 'Caitlin'];
+const indexLast = employees.lastIndexOf('Bob');
+console.log(indexLast); // 4
+
+</script>
+</html>

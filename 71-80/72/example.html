@@ -1,0 +1,39 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// While will keep repeating till the condition is met
+let i = 0;
+
+while (i !== 10) {
+  console.log(i);
+  i = Math.floor((Math.random() * 10) + 1);
+} // will keep logging numbers until it randomly hits 10
+// But it'll never actually log "10"
+
+console.log('-------------');
+
+// You can also use a do/while loop to execute things once before checking the condition
+let a = 10;
+
+do {
+    console.log(a);
+} while (a !== 10); // will log "10" and nothing else
+
+console.log('-------------');
+
+// Here's another example of why do / while is useful
+let n = Math.floor((Math.random() * 10) + 1);
+
+do {
+  console.log(n);
+  n = Math.floor((Math.random() * 10) + 1);
+} while (n !== 10); // will log "10" at least once, even if it's generated right at the start.
+
+
+</script>
+</html>

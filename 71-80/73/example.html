@@ -1,0 +1,49 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Simple IIFE
+(function swarmsOfBees(numBees){
+    console.log(`Not the bees! Specifically, not ${numBees} bees!`);
+})(10);
+
+// This won't work. Uncomment to see the error
+/*
+function releaseTheHounds(numHounds) {
+    console.log(`${numHounds} released!`);
+}();
+*/
+
+// Here's some code that creates a global variable
+let rube = 'Homer Simpson';
+function changeRube(str) {
+   rube = str;
+}
+changeRube('Barney Gumble');
+console.log(rube); // Barney Gumble
+
+// We can use an IIFE to avoid that!
+(function moesTavern() {
+  let lastName = 'freely';
+  let initials = 'I.P';
+  console.log(`Uh, is ${initials} ${lastName} here? Hey, everybody! ${initials} ${lastName}!`)
+})();
+// uncomment this to see the error
+/*
+console.log(lastName); // nope!
+*/
+
+// But we can still attach globals via the window object;
+(function() {
+  let privateVar = 'Private!';
+  window.publicVar = 'Public!';
+})();
+console.log(publicVar); // Public!
+console.log(privateVar); // undefined
+
+</script>
+</html>

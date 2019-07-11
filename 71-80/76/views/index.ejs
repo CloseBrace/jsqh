@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <div style="width: 400px;">
+      <form action="/users/create" method="post" id="formCreateUser">
+        <fieldset>
+          <legend>Create a User</legend>
+          <label>Name: <input type="text" name="name" id="inputName" /></label><br /><br />
+          <label>Email: <input type="email" name="email" id="inputEmail" /></label><br /><br />
+          <label>Username: <input type="text" name="username" id="inputUsername" /></label><br /><br />
+          <label>Age: <input type="number" name="age" id="inputAge" /></label><br /><br />
+          <label>Twitter: <input type="text" name="twitter" id="inputTwitter" /></label>
+        </fieldset>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

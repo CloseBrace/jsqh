@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <ul>
+      <li><strong>ID:</strong> <%= userData._id %></li>
+      <li><strong>Name:</strong> <%= userData.name %></li>
+      <li><strong>Email:</strong> <%= userData.email %></li>
+      <li><strong>Username:</strong> <%= userData.username %></li>
+      <li><strong>Age:</strong> <%= userData.age %></li>
+    </ul>
+    <p><a href="/users">User List</a></p>
+    <p><a href="/">Add Another User</a></p>
+  </body>
+</html>

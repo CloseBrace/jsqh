@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/site.js"></script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <ul>
+      <%
+        var userMarkup = '';
+        userData.forEach(user => {
+          userMarkup += `<li>
+            <a href="/users/${user.username}">${user.name}</a>,
+            <a href="mailto:${user.email}">${user.email}</a>,
+            ${user.age}
+            &nbsp; &nbsp;
+            <button class="btn-delete" data-user="${user.id}">Delete</Button>
+          </li>`;
+        });
+      %>
+      <%- userMarkup %>
+    </ul>
+    <p><a href="/">Add Another User</a></p>
+  </body>
+</html>

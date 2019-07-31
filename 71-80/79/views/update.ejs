@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <div style="width: 400px;">
+      <form action="/users/update" method="post" id="formUpdateUser">
+        <fieldset>
+          <legend>Update a User</legend>
+          <label>Name: <input type="text" name="name" id="inputName" value="<%= user.name %>" /></label><br /><br />
+          <label>Email: <input type="email" name="email" id="inputEmail" value="<%= user.email %>" /></label><br /><br />
+          <label>Username: <input type="text" name="username" id="inputUsername" value="<%= user.username %>" /></label><br /><br />
+          <label>Age: <input type="number" name="age" id="inputAge" value="<%= user.age %>" /></label><br /><br />
+          <input type="hidden" name="id" id="inputUserId" value="<%= user._id %>" />
+        </fieldset>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

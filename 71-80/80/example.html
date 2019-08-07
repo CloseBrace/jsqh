@@ -1,0 +1,74 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+      <div id="wizard" style="font-size: 80px;">🧙‍♂️</div>
+    </div>
+  </body>
+<script>
+
+// setTimeout with anonymous callback
+console.log('Hold on a sec.');
+setTimeout(() => {
+  console.log('Thanks!');
+}, 1000);
+
+// setTimeout with named callback
+const twoSecondAlert = () => {
+  console.log('We\'re at two seconds!');
+}
+setTimeout(twoSecondAlert, 2000);
+
+// Kill a setTimeout before it ever happens
+const timerOne = setTimeout(() => console.log('Three seconds!'), 3000);
+clearTimeout(timerOne);
+
+// Set a counter that ticks every half-second
+// Note: so that this runs AFTER the other code, I've set it inside a setTimeout that doesn't start for three seconds!
+let tick = 0;
+setTimeout(() => {
+  const timerTwo = setInterval(() => {
+    console.log('Tick!');
+    tick += 1;
+    // This will get rapidly annoying, so kill the timer after two seconds (four ticks);
+    if (tick === 4) {
+      clearInterval(timerTwo);
+    }
+  }, 500);
+}, 3000);
+
+// We can use timers for animations
+// Note: so that this runs AFTER the other code, I've set it inside a setTimeout that doesn't start for five seconds!
+let animTick = 0;
+let count = 0;
+let forward = true;
+let wizard = document.getElementById('wizard');
+
+setTimeout(() => {
+  console.log('Watch the Wizard!');
+
+  const timerThree = setInterval(() => {
+    wizard.style.paddingLeft = count * 5 + 'px';
+
+    // if we're going forward, increment. If not, decrement
+    // PS: this is our old friend the ternary operator. See JS Quick Hits 9!
+    forward ? count += 1 : count -= 1;
+
+    // Go forward for 20 ticks, then go backward, and repeat
+    if (count === 20) {
+      forward = false;
+    }
+    if (count === 0) {
+      forward = true;
+    }
+
+    // Let's only do this for ten seconds (250 * 40ms)
+    animTick += 1;
+    if (animTick === 250) {
+      clearInterval(timerThree);
+    }
+  }, 40);
+}, 5000);
+
+</script>
+</html>

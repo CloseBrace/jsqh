@@ -1,0 +1,46 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+const movie = {
+  title: 'Once Upon a Time ... in Hollywood',
+  director: 'Quentin Tarantino',
+  mainCast: ['Leonardo DiCaprio', 'Brad Pitt', 'Margot Robbie'],
+};
+
+const movieJSON = JSON.stringify(movie);
+console.log(movieJSON);
+
+const nextMovieJSON = '{"title":"Fast & Furious Presents: Hobbs & Shaw","director":"David Leitch", "mainCast":["Dwayne Johnson", "Jason Statham", "Idris Elba"]}';
+
+const nextMovieParsed = JSON.parse(nextMovieJSON);
+console.log(nextMovieParsed);
+
+// Oh, and you can use optional replacer and number params to alter the stringification process and add nice tabs to the output:
+const uppercaseTitle = (key, val) => {
+  if (key === 'title') {
+    return val.toUpperCase();
+  }
+  return val;
+}
+console.log(JSON.stringify(movie, uppercaseTitle, 2));
+
+// produces this:
+/*
+{
+  "title": "ONCE UPON A TIME ... IN HOLLYWOOD",
+  "director": "Quentin Tarantino",
+  "mainCast": [
+    "Leonardo DiCaprio",
+    "Brad Pitt",
+    "Margot Robbie"
+  ]
+}
+*/
+
+</script>
+</html>

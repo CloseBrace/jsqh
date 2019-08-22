@@ -1,0 +1,63 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Here's our object constructor (see JS Quick Hits 22)
+const Dog = function(name, breed, sex) {
+  this.name = name;
+  this.breed = breed;
+  this.sex = sex;
+
+  this.greet = () => `Hello, ${name}!\n`;
+  this.describe = () => `You are a ${breed}. What a good ${sex === 'm' ? 'boy' : 'girl'}!\n`;
+}
+
+// Using dot notation to combine object methods is super handy, but you can't do it automatically
+// ... so this will work:
+const bort = new Dog('Bort', 'Boston Terrier', 'm');
+console.log(bort.greet() + bort.describe());
+
+// This not so much. (uncomment to run it)
+/*
+const tessa = new Dog('Tessa', 'German Shepherd', 'f');
+console.log(tessa.greet().describe()); // type error!
+*/
+
+// To fix it, we need to rejigger our constructor
+const BetterDog = function(name, breed, sex) {
+  this.name = name;
+  this.breed = breed;
+  this.sex = sex;
+  this.string = '';
+
+  this.greet = () => {
+    this.string += `Hello, ${name}!\n`;
+    return this;
+  };
+
+  this.describe = () => {
+    this.string += `You are a ${breed}. What a good ${sex === 'm' ? 'boy' : 'girl'}!\n`
+    return this;
+  }
+
+  this.print = () => this.string;
+}
+
+// Because those functions now return the entire object (this), we can keep using other methods
+// But we do of course need that print method at the end to actually access our string value
+const mrChops = new BetterDog('Mr. Chops', 'Beagle', 'm');
+console.log(mrChops.greet().describe().print()); // there we go
+
+// You can also string them in any order you want, though obviously the output here's a bit weird
+const ladyChocolate = new BetterDog('Lady Chocolate', 'Labrador Retriever', 'f');
+console.log(ladyChocolate.describe().greet().print()); // weird ... but ok
+
+// lastly, note that we can't string print, because it doesn't return this!
+console.log(ladyChocolate.greet().print().describe().print()); // same error as Tessa, above
+
+</script>
+</html>

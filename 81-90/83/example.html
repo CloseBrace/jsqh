@@ -1,0 +1,26 @@
+<html>
+  <head><title>Click Test</title></head>
+  <body>
+    <div>
+      <button id="btnClick">Click Me</button>
+    </div>
+  </body>
+<script>
+
+// It's best to wait till the DOM's loaded before trying to assign event handlers
+document.addEventListener('DOMContentLoaded', () => {
+  // Normally event handlers ignore the capturing phase
+  document.getElementById('btnClick').addEventListener('click', (e) => {
+    console.log('button clicked!');
+    console.log(e);
+  })
+
+  // But we can access it by setting a third param to true
+  document.getElementsByTagName('body')[0].addEventListener('click', (e) => {
+    console.log('body clicked!');
+    console.log(e);
+  }, true);
+});
+
+</script>
+</html>

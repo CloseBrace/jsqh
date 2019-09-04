@@ -1,0 +1,35 @@
+<html>
+  <head><title>Click Test 2</title></head>
+  <body>
+    <div>
+      <button id="btnClick">Click Me</button>
+    </div>
+  </body>
+<script>
+
+// It's best to wait till the DOM's loaded before trying to assign event handlers
+document.addEventListener('DOMContentLoaded', () => {
+
+  // If we're not using the capture phase (which we usually arent), our target handlers fire first
+  document.getElementById('btnClick').addEventListener('click', () => {
+    console.log('button click handler one');
+  });
+
+  // Even if we introduce a different handler in the code ahead of one assigned to the target
+  document.getElementsByTagName('body')[0].addEventListener('click', () => {
+    console.log('body click handler');
+  }); // this is going to get logged after both button clicks
+
+  document.getElementById('btnClick').addEventListener('click', () => {
+    console.log('button click handler two');
+  }); // ... see?
+
+  // This is going to show up before the body handler, because bubbling goes in reverse from the target upward
+  document.getElementsByTagName('div')[0].addEventListener('click', () => {
+    console.log('div click handler one');
+  });
+
+});
+
+</script>
+</html>

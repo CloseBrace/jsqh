@@ -1,0 +1,63 @@
+<html>
+  <head><title>Click Test 3</title></head>
+  <body>
+    <div>
+      <button id="btnClick">Click Me</button>
+      <button id="btnClick2">No, Click Me!</button>
+    </div>
+  </body>
+<script>
+
+// It's best to wait till the DOM's loaded before trying to assign event handlers
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Stop propagation will stop any following event listeners, but not siblings
+  document.getElementById('btnClick').addEventListener('click', (e) => {
+    console.log('button one event one');
+    e.stopPropagation();
+  });
+
+  document.getElementById('btnClick').addEventListener('click', () => {
+    console.log('button one event two');
+  }); // this still logs. It's a "sibling" that happens at the same time
+
+  document.getElementsByTagName('body')[0].addEventListener('click', () => {
+    console.log('body event one');
+  }); // this won't log. It comes after the button event
+
+
+  /*
+  // Note: some of the following has an effect on what's above, so I've commented it out
+  // Just uncomment this whole block to see the stuff relating to the second button
+
+
+  // Stop immediate propagation just stops *everything*
+  document.getElementById('btnClick2').addEventListener('click', (e) => {
+    console.log('button two event one');
+    e.stopImmediatePropagation();
+  });
+
+  document.getElementById('btnClick2').addEventListener('click', () => {
+    console.log('button two event two');
+  }); // this won't log even though it's a sibling
+
+  document.getElementsByTagName('body')[0].addEventListener('click', () => {
+    console.log('body event two');
+  }); // this won't log either
+
+  // But this will log because we're using the capturing phase boolean
+  // Which means it happens before the target can call stopImmediatePropagation
+  document.getElementsByTagName('body')[0].addEventListener('click', () => {
+    console.log('body event three');
+  }, true);
+
+  // Note: if we used a stopPropagation or stopImmediatePropagation in that last handler
+  // It'd also stop the "button two event one" event, because that happens in the target
+  // phase, which comes after the capturing phase.
+
+  */
+
+});
+
+</script>
+</html>

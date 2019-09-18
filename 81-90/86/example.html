@@ -1,0 +1,90 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Memoization isn't really necessary with simple pure math functions since they're so fast
+// ... but they're also simple and make for good, basic examples!
+
+// Non-memoized function
+// Need a refresher on arrow functions? See JS Quick Hits 12 and 13
+const multiply = (x,y) => x * y;
+console.log(multiply(8,4)); // 32
+
+console.log('-----------------');
+
+// Memoized function keeps a cache object and updates/references it
+// Note: it's crazy to write a twelve-line function for a simple math operation. Seriously, don't do this in real life.
+const memoMultiply = () => {
+  const cache = {};
+  return (x,y) => {
+    const key = JSON.stringify(x + ',' + y);
+    if (key in cache) {
+      return 'From Cache! ' + cache[key];
+    }
+    const val = x * y;
+    cache[key] = val;
+    return val;
+  }
+}
+
+// Since memoMultiply returns a function, arguments passed to getNumber get passed to that inner function
+const getNumber = memoMultiply();
+
+console.log(getNumber(8,4)); // 32
+console.log(getNumber(8,4)); // From Cache! 32
+
+console.log('-----------------');
+
+// You don't have to do the nested function thing.
+// ... but now you have a global variable to keep track of.
+const outerCache = {};
+const addOne = (x) => {
+  if (x in outerCache) {
+    return 'From Cache: ' + outerCache[x];
+  }
+  const val = x + 1;
+  outerCache[x] = val;
+  return val;
+}
+console.log(addOne(24)); // 25
+console.log(addOne(24)); // From Cache 25
+
+console.log('-----------------');
+
+// Factorials benefit a lot from memoization
+// Basic non-memoized factorial function
+const basicFactorial = (n) => {
+  console.log('working on ' + n);
+  if (n === 1) { return 1; }
+  return n * basicFactorial(n - 1);
+}
+console.log(basicFactorial(3)); // shows each step to get to 6
+console.log('-----------------');
+console.log(basicFactorial(3)); // repeats each step to get to 6
+
+console.log('-----------------');
+
+// Memoized factorial function
+const memoFactorial = () => {
+  const cache = {};
+  return (n) => {
+    if (n in cache) {
+      return cache[n];
+    }
+    const num = n * basicFactorial(n - 1);
+    cache[n] = num;
+    return num;
+  }
+}
+const getFactorial = memoFactorial();
+
+console.log(getFactorial(4)); // shows all steps
+console.log('-----------------');
+console.log(getFactorial(4)); // cached value!
+
+</script>
+</html>

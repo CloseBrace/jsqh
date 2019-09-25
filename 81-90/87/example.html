@@ -1,0 +1,48 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+// This example makes extensive use of arrow functions with implict returns
+// Need a refresher? Check out JS Quick Hits 12
+// https://closebrace.com/tutorials/2018-04-11/js-quick-hits-12-arrow-functions-part-1
+
+// Let's start with some vitally important real-world data!
+const data = [
+  { name: 'James McAvoy', age: 40, character: 'Bill Denbrough' },
+  { name: 'Jessica Chastain', age: 42, character: 'Beverly Marsh' },
+  { name: 'Bill Hader', age: 40, character: 'Richie Tozier' },
+  { name: 'Isaiah Mustafa', age: 45, character: 'Mike Hanlon' },
+  { name: 'Jay Ryan', age: 38, character: 'Ben Hanscom' },
+  { name: 'James Ransone', age: 40, character: 'Eddie Kaspbrak' },
+  { name: 'Andy Bean', age: 34, character: 'Stanley Uris' },
+  { name: 'Bill Skarsgård', age: 29, character: 'Pennywise' },
+];
+
+// We all know array.map, right? Let's return just the names.
+const nameArray = data.map(actor => actor.name);
+console.log(nameArray); // An array of just the actors' names
+
+console.log('=====================');
+
+// Let's return the character names of only people 40 and over
+// We could do this with an internal "if" in array.map ... or we can chain a filter and a map
+const charactersFortyPlus = data.filter(actor => actor.age >= 40).map(actor => actor.character);
+console.log(charactersFortyPlus) // An array of character names played by actors 40 or over
+
+console.log('=====================');
+
+// Now let's get all of the ages of just the good guys, and then add them all up
+// We could do this using a global variable to add all of the ages
+// ... or we can chain a filter, map, and reduce!
+const goodguysCombinedAges = data
+  .filter(actor => actor.character !== 'Pennywise')
+  .map(actor => actor.age)
+  .reduce((total, age) => total + age);
+
+console.log(goodguysCombinedAges); // 279
+
+</script>
+</html>

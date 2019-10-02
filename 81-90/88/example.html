@@ -1,0 +1,60 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+// Here's some data
+const game = {
+  name: 'Monopoly',
+  releaseDate: 1935,
+  difficulty: 'medium',
+  randomChance: 'high',
+  tedious: true,
+};
+const players = ['Zach', 'Sue', 'Bill', 'Diana', 'Cory'];
+const slogan = 'Own It All';
+// We'll use these in a bit ...
+const keys = ['name', 'releaseDate', 'difficulty', 'randomChance', 'tedious'];
+
+// Array bracket notation relies on the index of the item, starting with zero
+console.log(players[0]); // Zach
+console.log(players[3]); // Diana
+
+console.log('================');
+
+// String notation is similar. The bracket refers to the character index, starting with zero
+// Note that spaces count!
+console.log(slogan[1]); // w
+console.log(slogan[4] + slogan[9]); // Il
+
+console.log('================');
+
+// Object notation relies on the keys
+console.log(game['name']); // Monopoly
+console.log(game['tedious']); // true
+
+console.log('================');
+
+// ... so, that's kind of pointless, since we can just use dot notation
+console.log(game.name); // Monopoly
+console.log(game.tedious); // true
+
+console.log('================');
+
+// But it's very handy when we have a list of strings that correspond to object keys
+// ... which we do!
+
+const difficulty = keys[3];
+console.log(game[difficulty]); // high
+
+console.log('================');
+
+keys.forEach(key => {
+  console.log(`${key}: ${game[key]}`); // logs each value in the object
+})
+
+
+</script>
+</html>difficul

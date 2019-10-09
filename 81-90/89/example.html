@@ -1,0 +1,44 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// We can change variable types in vanilla JavaScript
+let num = 5;
+num = 'Five';
+console.log(num); // Five
+
+console.log('==============');
+
+// Sometimes the JS engine does it for us (temporarily)
+const numB = 5;
+console.log('well, now ' + numB + ' is a string'); // well, now 5 is a string
+
+console.log('==============');
+
+// This can cause problems ...
+const numC = '5';
+const addTen = (n) => 10 + n;
+console.log(addTen(numC)); // 105
+
+console.log('==============');
+
+// This fixes the problem
+const numD = '5';
+const addTen = (n) => 10 + parseInt(n, 10);
+console.log(addTen(numD)); // 15
+
+console.log('==============');
+
+// ... except if we use a string that's can't be parsed into an integer!
+const numE = 'I like chocolate chip cookies';
+const addTen = (n) => 10 + parseInt(n, 10);
+console.log(addTen(numE)); // 15
+
+// See the .ts file for the TypeScript info
+
+</script>
+</html>difficul

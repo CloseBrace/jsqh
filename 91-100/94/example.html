@@ -1,0 +1,76 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+// You can use .call (or .apply) to chain constructors
+// Note: we could also hard-code these values if we wanted to
+function Amphibian(amphKingdom, amphPhylum, amphClass) {
+  this.kingdom = amphKingdom;
+  this.phylum = amphPhylum;
+  this.class = amphClass;
+}
+
+function Frog(frogKingdom, frogPhylum, frogClass, frogOrder) {
+  Amphibian.call(this, frogKingdom, frogPhylum, frogClass);
+  this.order = frogOrder;
+  this.hasLegs = true;
+}
+
+const myFrog = new Frog('Animalia', 'Chordata', 'Amphibia', 'Anura');
+console.log(myFrog);
+/* output:
+Frog {
+  kingdom: 'Animalia',
+  phylum: 'Chordata',
+  class: 'Amphibia',
+  order: 'Anura',
+  hasLegs: true
+}
+*/
+
+// the only difference between .call and .apply is how they handle arguments
+// apply takes them as an array, after the initial this argument
+function Salamander(salKingdom, salPhylum, salClass, salOrder) {
+  Amphibian.apply(this, [salKingdom, salPhylum, salClass]);
+  this.order = salOrder;
+  this.hasLegs = true;
+}
+const mySal = new Salamander('Animalia', 'Chordata', 'Amphibia', 'Urodela');
+console.log(mySal);
+/* output:
+Salamander {
+  kingdom: 'Animalia',
+  phylum: 'Chordata',
+  class: 'Amphibia',
+  order: 'Urodela',
+  hasLegs: true
+}
+*/
+
+// A couple of gotchas:
+
+// 1) If you don't pass a this argument, it defaults to the global obj
+// ... but only in non-strict mode and only with var
+var text = 'This string is on the global object';
+function shoutText() {
+  console.log(this.text)
+}
+shoutText.call(); // undefined in node, but displays the string in the browser
+
+// 2) .call and .apply only work on non-arrow functions
+function sayName() {
+  console.log(this.name);
+}
+const sayAge = () => {
+  console.log(this.age);
+}
+
+const me = { name: 'Chris Buecheler', age: 42 } // yes, I'm old!
+
+sayName.apply(me); // Chris Buecheler
+sayAge.apply(me); // undefined
+</script>
+</html>

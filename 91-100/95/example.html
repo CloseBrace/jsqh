@@ -1,0 +1,39 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+// Here's some data to work with
+const youtubeMusicians = [
+  { name: 'Rob Scallon', instrument: 'guitar', vocalist: false },
+  { name: 'Davie504', instrument: 'bass', vocalist: false },
+  { name: 'Andrew Huang', instrument: 'everything', vocalist: true },
+  { name: 'Mary Spender', instrument: 'guitar', vocalist: true },
+  { name: 'Adam Nealy', instrument: 'bass', vocalist: false },
+];
+
+// You don't need to use a constructor to pass a custom this to a function
+// Note: this doesn't work with arrow functions because they don't have a this value
+function introduceMusician() {
+  console.log(`Introducing ${this.name}, who plays ${this.instrument} and is ${this.vocalist ? '' : 'not '}a vocalist.`);
+}
+
+introduceMusician(youtubeMusicians[1]); // broken!
+introduceMusician.call(youtubeMusicians[3]); // works!
+
+console.log('=================');
+
+// You can also use call or apply to invoke an inline anonymous function
+for (let i = 0; i < youtubeMusicians.length; i += 1) {
+  (function() {
+    this.nameTheSingers = function() {
+      if(this.vocalist) { console.log(`${this.name} sure can sing!`)}
+    }
+    this.nameTheSingers();
+  }).call(youtubeMusicians[i]);
+}
+
+</script>
+</html>

@@ -1,0 +1,62 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+// Here's the basic syntax for initializing a map
+const characters = new Map([
+  [0, 'Itchy'],
+  [1, 'Scratchy'],
+]);
+
+// You can also set values manually like this:
+characters.set(2, 'Disgruntled Goat');
+
+// You retrieve values with get
+console.log(characters.get(2)); // 'Disgruntled Goat'
+
+console.log('================');
+
+// You can safely use forEach and for/of with maps
+characters.forEach(char => console.log(char)); // logs character names
+
+for (let [key, value] of characters) {
+  console.log(key);
+} // 0, 1, 2
+
+console.log('================');
+
+// Here's an object with numbers as keys
+const kids = {
+  1: 'Bort',
+  2: 'Bart',
+  3: 'Lisa',
+  4: 'Maggie',
+};
+
+// But they get auto-converted to strings, quietly
+console.log(Object.keys(kids)); // ['1', '2', '3', '4'];
+
+console.log('================');
+
+// Maps can take anything as a key, even an object or function
+const adults = new Map([
+  [0, 'Homer'],
+  ['1', 'Marge'],
+  [() => null, 'Professor Frink'],
+]);
+console.log(adults.entries());
+
+// Getting a map's size is very easy
+console.log(adults.size); // 3
+
+console.log('================');
+
+// Maps don't really support methods, so objects are better for that
+adults.set('shoutName', (name) => console.log(name.toUpperCase()));
+adults.get('shoutName').call(null, 'test');
+
+</script>
+</html>

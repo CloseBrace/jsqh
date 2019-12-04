@@ -1,0 +1,55 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Here's an array. Note that it has two duplicate values, 27 and 43
+const ages = [27, 19, 43, 58, 21, 94, 27, 32, 70, 43];
+
+
+// Sets cannot contain duplicates, so converting nukes them
+const ageSet = new Set(ages);
+console.log([...ageSet]); // [27, 19, 43, 58, 21, 94, 32, 70];
+
+console.log('=================');
+
+// Checking if a set contains a value is super easy
+console.log(ageSet.has(27)); // true
+console.log(ageSet.has(29)); // false
+
+console.log('=================');
+
+// Adding new data is also easy - and if it's already there, it gets ignored
+ageSet.add(30); // new
+ageSet.add(58); // already there
+console.log([...ageSet]); // [27, 19, 43, 58, 21, 94, 32, 70, 30]
+
+console.log('=================');
+
+// Deleting items is no problem, and getting set size? Also easy
+ageSet.delete(21);
+console.log(ageSet.size); // 8
+
+console.log('=================');
+
+// Sets can contain mixed data, and work very well with the for/of loop
+const mixedData = new Set();
+mixedData.add('Baby Yoda');
+mixedData.add(2019);
+mixedData.add({ thisIsAnObject: true, canYouUseObjectsInSets: 'yes'});
+mixedData.add([1,2,3,4]); // you can also hold arrays in sets
+
+for (let item of mixedData) {
+    console.log(item);
+}
+
+console.log('=================');
+
+// You can also use forEach
+mixedData.forEach(item => console.log(typeof item)); // string, number, object, object (arrays are objects!)
+
+</script>
+</html>

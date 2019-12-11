@@ -1,0 +1,51 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+const wm1 = new WeakMap();
+const ws1 = new WeakSet();
+
+// Weakmaps require objects as their keys
+// So this won't work
+try {
+  wm1.set('testkey', 'testvalue');
+} catch (err) {
+  console.log(err); // error!
+}
+console.log(wm1.get('testkey')); // undefined
+
+// This will work
+const obj = { name: 'Chris '};
+wm1.set(obj, 'testvalue');
+console.log(wm1.get(obj)); // testvalue
+
+console.log('=============================');
+
+// Weaksets require objects as their values
+// So this won't work
+try {
+  ws1.add('testvalue');
+} catch (err) {
+  console.log(err); // error!
+}
+console.log(ws1.has('testvalue')); // false
+
+// This will work
+ws1.add(obj);
+console.log(ws1.has(obj)); // true
+
+console.log('=============================');
+
+// Weakmaps and Weaksets are not iterators or enumerable
+for (let [key, value] of wm1) {
+  console.log(key, value); // nope
+}
+const keys = wm1.keys(); // nope
+ws1.forEach(item => console.log(item)); // nope
+
+</script>
+</html>

@@ -1,0 +1,56 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+// Uncomment this to go into strict mode
+// 'use strict';
+
+// Note: You'll need to comment and uncomment stuff to see all of this working
+// because each example throws an error in strict mode
+
+// If you're not in strict mode, assigning a value to a non-existant variable sticks it on the global variable
+// But if you're in strict mode, you get an error.
+testVar = 'test';
+console.log(testVar);
+
+console.log('=================');
+
+// Everything that follows will fail silently in regular mode, and loudly in Strict Mode
+
+// Reassigning read-only definitions
+undefined = 10;
+NaN = 'this is a string, which is technically not a number';
+
+console.log('=================');
+
+// Deleting undeletable properties
+Delete Object.prototype
+
+console.log('=================');
+
+// Using two params with the same name
+// Note: this doesn't totally fail silently - see the full tutorial for more info
+function logNameAndAge(name, age, name) {
+  console.log(name, age);
+}
+logNameAndAge('Chris', 42, 'Joe');
+
+console.log('=================');
+
+// Octal shorthand
+const myNum = 015;
+console.log(myNum);
+
+console.log('=================');
+
+// Adding properties to primitives
+const slogan = 'Why go all the way to Alaska to punch someone when you can punch someone right here?';
+slogan.isWeird = true;
+console.log(slogan.isWeird);
+
+
+</script>
+</html>

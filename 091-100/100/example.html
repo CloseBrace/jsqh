@@ -1,0 +1,41 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+// Uncomment this to go into strict mode
+// 'use strict';
+
+// Note: You'll need to comment and uncomment stuff to see all of this working
+// because each example throws an error in strict mode
+
+// You flat-out can't use with in strict mode for performance reasons
+let output;
+const x = 5;
+with(Math) {
+    output = floor(random() * (x) + 1);
+}
+console.log(output);
+
+
+console.log('===================');
+
+// When in strict mode, eval will not introduce or overwrite variables outside of its local scope
+// Note: let and const retain scope in BOTH modes, so they always behave like strict mode
+var y = 10;
+console.log(eval("var y = 32; y;")); // 32
+console.log(y); // 10 (strict) or 32 (non-strict);
+
+console.log('===================');
+
+// You can't delete plain names in Strict Mode
+// You can't do it in regular mode either but it won't error
+const tempVariable = 10;
+console.log('I only need tempVariable for this one line. The value is: ' + tempVariable);
+delete tempVariable; // throws error in strict mode
+console.log(tempVariable); // 10 in regular mode
+
+</script>
+</html>

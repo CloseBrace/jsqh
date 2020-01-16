@@ -1,0 +1,49 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+// Here's some basic arrays-in-an-array data
+const skywalkerCast = [
+  ['Rey', 'Finn', 'Poe', 'Rose', 'Zorri', 'Chewbacca', 'Lando', 'Leia'],
+  ['Kylo Ren', 'Hux'],
+  ['BB-8', 'D-0', 'C-3PO', 'R2-D2' ],
+];
+
+// We can flatten that right down just all the strings in a single array
+const skywalkerFlat = skywalkerCast.flat();
+console.log(skywalkerFlat); // flattened array
+
+console.log('===================');
+
+// You can't just use flat() if you have more deeply-nested arrays
+const testArray = ['A', ['B', 'C'], ['D', ['E', 'F']]];
+const testArrayFlat = testArray.flat();
+console.log(testArrayFlat); // ["A", "B", "C", "D", Array(2)]
+
+// But you can give flat() parameters!
+const testArrayDeepFlat = testArray.flat(2); // you can also use "infinity"
+console.log(testArrayDeepFlat); // ["A", "B", "C", "D", "E", "F"]
+
+console.log('===================');
+
+// Flattening an array will not remove duplicates!
+const testArrayDupes = ['Robot', 'Pirate', ['Ninja', 'Robot']];
+const testArrayDupesFlat = testArrayDupes.flat();
+console.log(testArrayDupesFlat); // ["Robot", "Pirate", "Ninja", "Robot"];
+
+// But you can do so by converting the array to a Set and back.
+const testArrayDupesFlatSet = new Set(testArrayDupesFlat);
+console.log([...testArrayDupesFlatSet]); // ["Robot", "Pirate", "Ninja"]
+
+console.log('===================');
+
+// Empty array values will be removed when flattening
+const monsters = ['Werewolf', 'Werehorse', , 'Werearmadillo'];
+const moreMonsters = ['Weretiger', 'Wereant', undefined, 'Weretuna'];
+console.log(monsters.flat()); // ["Werewolf", "Werehorse", "Werearmadillo"]
+console.log(moreMonsters.flat()); // ["Weretiger", "Wereant", undefined, "Weretuna"]
+</script>
+</html>

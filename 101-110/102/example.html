@@ -1,0 +1,56 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+const cast = [
+  'Daniel Craig',
+  'Ana de Armas',
+  'Chris Evans',
+  'Jamie Lee Curtis',
+  'Michael Shannon',
+  'Don Johnson',
+  'Toni Collette',
+  'Lakeith Stanfield',
+  'Christopher Plummer',
+];
+
+// Variable declarations are "hoisted" to the top of the current scope
+// But their *values* are not
+function greetName(name) {
+  console.log(greeting + ' ' + name);
+  var greeting = 'Hello there,';
+  console.log(greeting);
+}
+greetName(cast[0]); // 'undefined Daniel Craig Hello there,
+
+console.log('==================');
+
+// Hoisting can cause problems if you're expecting a reference error
+// Change var to let to properly create a reference error
+function listNames(names) {
+  try {
+    text
+  } catch(e) {
+    if(e.name == "ReferenceError") {
+      console.log('variable not declared yet!');
+      return;
+    }
+  }
+  var text = 'Starring: ';
+  names.forEach(name => console.log(text + name));
+}
+listNames(cast); // all of our stars
+
+console.log('==================');
+
+// Here's an example that throws a reference error
+function greetNames(names) {
+  names.forEach(name => console.log(greeting + ' ' + name));
+  let greeting = 'Hiya, ';
+}
+greetNames(cast); // reference error
+</script>
+</html>

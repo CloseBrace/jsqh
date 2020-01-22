@@ -14,7 +14,13 @@ Now we've got `Array.prototype.flat` which allows you not only to flatten your a
 
 ```
 const skywalkerFlat = skywalkerCast.flat();
-console.log(skywalkerFlat);
+console.log(skywalkerFlat); // See output below.
+```
+
+Output Array:
+
+```
+["Rey","Finn","Poe","Rose","Zorri","Chewbacca","Lando","Leia","Kylo Ren","Hux","BB-8","D-0","C-3PO","R2-D2"]
 ```
 
 As you can see, this has flattened our array! Note also that if we console log the original array, it hasn't change. It's still nested. Like many (but not all!) Array methods, `flat` is non-destructive. It returns an entirely new array rather than mutating the existing one.

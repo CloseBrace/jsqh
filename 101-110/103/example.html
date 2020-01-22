@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <title>JS Quick Hits 103</title>
+  </head>
+  <body>
+    <div>
+      <select id="select">
+        <option value="all">All Titles</option>
+        <option value="published">Published Only</option>
+      </select>
+    </div>
+    <div>
+      <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Age</th>
+            <th>Pages</th>
+            <th>Year Published</th>
+          </tr>
+        </thead>
+        <tbody id="bookList">
+        </tbody>
+      </table>
+    </div>
+  </body>
+<script>
+
+// Here's some data - specifically, all of the books I've written!
+// shameless self promotin for the win! http://cwbuecheler.com/writing
+const myBooks = [
+  { age: 'Adult', genre: 'Urban Fantasy', pages: 350, published: true, status: 'Published', title: 'The Blood That Bonds', yearFinished: 2009, yearPublished: 2009 },
+  { age: 'Adult', genre: 'Urban Fantasy', pages: 489, published: true, status: 'Published', title: 'Blood Hunt', yearFinished: 2011, yearPublished: 2011 },
+  { age: 'Adult', genre: 'Urban Fantasy', pages: 510, published: true, status: 'Published', title: 'The Children of the Sun', yearFinished: 2012,yearPublished: 2012 },
+  { age: 'Young Adult', genre: 'Science Fiction', pages: 341, published: true, status: 'Published', title: 'The Broken God Machine', yearFinished: 2013, yearPublished: 2013 },
+  { age: 'Middle Grade', genre: 'Urban Fantasy', pages: 280, published: false, status: 'Trunked', title: 'The Werewolf at the Window', yearFinished: 2013, yearPublished: 0 },
+  { age: 'Adult', genre: 'Thriller', pages: 395, published: true, status: 'Published', title: 'Elixir', yearFinished: 2014, yearPublished: 2018 },
+  { age: 'Adult', genre: 'Sci-Fi / Horror', pages: 430, published: false, status: 'Trunked', title: 'Pulse', yearFinished: 2015, yearPublished: 0 },
+  { age: 'Adult', genre: 'Space Opera', pages: 380, published: false, status: 'Shopping to Agents', title: 'Divergence Point', yearFinished: 2017, yearPublished: 0 },
+  { age: 'Adult', genre: 'Urban Fantasy', pages: 350, published: false, status: 'Shopping to Agents', title: 'Possessed', yearFinished: 2019, yearPublished: 0 },
+];
+
+// Wait for the DOM to be ready
+document.addEventListener('DOMContentLoaded', () => {
+
+  // We want the element we're going to fill and the selectbox
+  const tbody = document.getElementById('bookList');
+  const select = document.getElementById('select');
+
+  // On load
+  fillData('all', tbody);
+
+
+  // On Change
+  select.addEventListener('change', e => {
+    fillData(select.value, tbody);
+  });
+
+});
+
+// Function for filling the table with data
+const fillData = (selectVal, tbody) => {
+  let bookList = myBooks;
+  // show all or just published?
+  if (selectVal === 'published') {
+    bookList = myBooks.filter(book => book.published);
+  }
+
+  // Create the HTML
+  let html = '';
+  bookList.forEach(book => {
+    html += '<tr>';
+    html += `<td>${book.title}</td>`;
+    html += `<td>${book.genre}</td>`;
+    html += `<td>${book.age}</td>`;
+    html += `<td>${book.pages}</td>`;
+    html += `<td>${book.yearPublished > 0 ? book.yearPublished : 'N/A'}</td>`;
+    html += '</tr>';
+  });
+
+  // Inject the HTML
+  tbody.innerHTML = html;
+}
+
+
+</script>
+</html>

@@ -1,0 +1,40 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// There's no real difference between and "exception" and an "error" in JavaScript
+// in fact, JavaScript only has the concept of errors, like this one:
+
+try {
+  throw new Error('Oh no, the barbarians have broken down the gate and are stealing our data!');
+} catch (e) {
+  console.log(e.message);
+}
+
+// By convention, "errors" are what the JavaScript engine gives you when you screw up
+// (uncomment to make this work)
+
+/*
+const str = "You can't change this";
+str = "But I want to change it!" // TypeError
+*/
+
+// And "exceptions" are errors intentionally thrown by the developer
+// (uncomment to make this work)
+
+
+const input = 2000 // pretend this value came from a form field, or similar
+try {
+  if (input > 1000) {
+    throw new Error('Sorry, the value must be less than 1000');
+  }
+} catch (e) {
+  console.log(e.message); // Sorry, the value must be less than 1000
+}
+
+</script>
+</html>

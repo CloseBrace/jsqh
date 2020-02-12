@@ -1,0 +1,75 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Here's some data to work with
+const names = ['Harley Quinn', 'Huntress', 'Black Mask', 'Black Canary', 'Renee', 'Erika', 'Scantily Clad Crystal'];
+
+// Remove by value - array.filter
+// Non-destructive
+const filteredNames = names.filter((val) => {
+  let keepVal = true
+  if (val === 'Black Canary') { keepVal = false; }
+  if (val === 'Scantily Clad Crystal') { keepVal = false; }
+  return keepVal;
+});
+console.log(filteredNames); // ['Harley Quinn', 'Huntress', 'Black Mask', 'Renee', 'Erika'];
+console.log(names); // our original array
+
+console.log('======================');
+
+// Remove by index - array.splice
+// DESTRUCTIVE!
+const splicedNames = names.splice(3,3);
+console.log(splicedNames); // ['Black Canary', 'Renee', 'Erika']
+console.log(names); // ['Harley Quinn', 'Huntress', 'Black Mask', 'Scantily Clad Crystal']
+
+console.log('======================');
+
+
+// Remove first item - array.shift
+// DESTRUCTIVE!
+const shiftedName = names.shift();
+console.log(shiftedName); // 'Harley Quinn'
+console.log(names); // ['Huntress', 'Black Mask', 'Scantily Clad Crystal']
+
+console.log('======================');
+
+
+// Remove last item - array.pop
+// DESTRUCTIVE!
+const poppedName = names.pop();
+console.log(poppedName); // 'Scantily Clad Crystal'
+console.log(names); // ['Huntress', 'Black Mask']
+
+console.log('======================');
+
+
+// Change the item to undefined - delete
+// DESTRUCTIVE!
+const deletedName = delete names[1];
+console.log(deletedName); // true
+console.log(names); // ['Huntress', empty];
+
+console.log('======================');
+
+
+// Nuke everyting in an array defined by const
+// You can't just do bigArray = []; because ... it's a const!
+// DESTRUCTIVE!
+names.length = 0;
+console.log(names); // []
+
+console.log('======================');
+
+
+// And let's put all our original data back, for fun:
+names.push('Harley Quinn', 'Huntress', 'Black Mask', 'Black Canary', 'Renee', 'Erika', 'Scantily Clad Crystal');
+console.log(names); // our original array
+
+</script>
+</html>

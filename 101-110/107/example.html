@@ -1,0 +1,39 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Math.random generates a number like this: 0.22146250137046364
+// First let's generate an array of large decimal numbers, like this:
+const numbers = [];
+for (let i = 0; i < 20; i += 1) {
+  numbers.push(Math.random() * 100); // move the decimal over two places
+}
+console.log(numbers); // our array. It's ... unwieldy.
+
+console.log('====================');
+
+// Next let's manually round the first number up, and the second down
+numbers[0] = Math.ceil(numbers[0]);
+numbers[1] = Math.floor(numbers[1]);
+console.log(numbers); // the first two numbers are now integers
+
+console.log('====================');
+
+// Now let's go through the whole array and auto-round everything else
+// using Math.round on the integers just leaves them as integers
+const numbersCleaned = numbers.map(num => Math.round(num));
+console.log(numbersCleaned); // that's better
+
+console.log('====================');
+
+// Now let's find the largest and smallest numbers
+// Note that we're using the spread operator here (see JS Quick Hits 8)
+console.log('Smallest: ' + Math.min(...numbersCleaned));
+console.log('Biggest: ' + Math.max(...numbersCleaned));
+
+</script>
+</html>

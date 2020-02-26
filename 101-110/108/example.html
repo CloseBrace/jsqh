@@ -1,0 +1,47 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+const data = ['Geralt', 'Ciri', 'Yennefer', 'Fringilla', 'Cahir', 'Tissaia', 'Dara'];
+
+// You used to have to jump through a few hoops to find something in an array
+let hasYen = false;
+let hasTriss = false;
+const yenIndex = data.indexOf('Yennefer');
+const trissIndex = data.indexOf('Tess');
+if (yenIndex > -1) {
+  hasYen = true;
+}
+if (trissIndex > -1) {
+  hasTriss = true;
+}
+console.log(hasYen); // true
+console.log(hasTriss); // false
+
+console.log('==================');
+
+// That's tedious! But now we have Array.includes!
+console.log(data.includes('Cahir')); // true
+console.log(data.includes('Joey Jim Bob Junior Joe Johnson')); // false
+
+console.log('==================');
+
+// You can also force Array.includes to start from a certain index.
+console.log(data.includes('Geralt')); // true
+console.log(data.includes('Geralt', 3)); // false
+
+
+console.log('==================');
+
+// Note that this doesn't work for objects
+const arrayOfObjs = [{ name: 'Chris' }, { name: 'Sarah'}];
+console.log(arrayOfObjs.includes({ name: 'Chris' })); // false
+
+// We'll explain how to get around that next week!
+
+</script>
+</html>

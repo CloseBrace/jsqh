@@ -1,0 +1,45 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// In the last tutorial, we saw that we can't use Array.includes with objects
+const arrayOfObjs = [{ name: 'Chris' }, { name: 'Sarah'}];
+console.log(arrayOfObjs.includes({ name: 'Chris' })); // false
+
+console.log('=====================');
+
+// We _can_ use it if we have references to the objects, like this:
+const firstObj = { name: 'Chris' };
+const secondObj = { name: 'Sarah' };
+const newArrayOfObjs = [firstObj, secondObj];
+console.log(newArrayOfObjs.includes(firstObj)); // true
+
+console.log('=====================');
+
+// But we don't always HAVE references. Here's some more data:
+const characters = [{ name: 'Gideon' }, { name: 'Harrowhark' }, { name: 'Ianthe' }, { name: 'Dulcinae' }];
+
+// We can use Array.some to look at our objects.
+const hasHarrow = characters.some(char => {
+  return char.name === 'Harrowhark';
+});
+console.log(hasHarrow); // true
+
+console.log('=====================');
+
+// If you don't want to hard-code the value, here's how to do it:
+const checkName = (arr, name) => {
+  return arr.some(char => char.name === name);
+}
+console.log(checkName(characters, 'Ianthe')); // true
+console.log(checkName(characters, 'Bob')); // false
+
+// NOTE: obviously, we're only checking on a single object property here.
+// To be totally sure of a match, you'd need to iterate over all the object's properties
+// We'll talk more about that in the next tutorial!
+</script>
+</html>

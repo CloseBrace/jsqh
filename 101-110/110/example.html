@@ -1,0 +1,60 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// We need some objects to compare
+const userOne = {
+  name: 'Jeff',
+  age: 34,
+  kids: ['Theresa', 'Robert'],
+};
+
+const userTwo = {
+  name: 'Linda',
+  age: 39,
+  kids: null,
+};
+
+// And let's make a quick duplicate of userOne. Note: not a reference! The spread operator makes a new object.
+const userThree = {...userOne};
+
+// Here's our object comparison function
+const compareTwoObjects = (obj1, obj2) => {
+  let objectsMatch = true;
+
+  // Make sure we're comparing two objects
+  if (typeof obj1 !== 'object' || typeof obj2 !== 'object') {
+    console.log('Both params must be objects');
+    return false;
+  }
+
+  // Loop over object 1's keys, get values, compare them to object 2's matching values
+  Object.keys(obj1).forEach(key => {
+    if (obj1[key] !== obj2[key]) { objectsMatch = false; }
+  });
+
+  return objectsMatch;
+};
+
+// Broken tests
+compareTwoObjects('str', { name: 'str' }); // first error
+
+console.log('==============');
+
+// Working tests
+console.log(compareTwoObjects(userOne, userTwo)); // false
+console.log(compareTwoObjects(userOne, userThree)); // true
+
+console.log('==============');
+
+// Note that this also will work for arrays, since JS considers them objects
+console.log(compareTwoObjects([1,2,3], [1,2,3])); // true
+console.log(compareTwoObjects([1,2,4], [1,2,3])); // false
+
+
+</script>
+</html>

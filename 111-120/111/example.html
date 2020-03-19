@@ -1,0 +1,88 @@
+<html>
+  <body>
+    <div>
+      <p id="reminder">Make sure to open your browser's JavaScript console!</p>
+    </div>
+  </body>
+<script>
+
+// Here's a constructor
+function Game(options) {
+  this.name = options.name || 'None';
+  this.releaseYear = options.releaseYear || 2020;
+  this.genre = options.genre || 'Unknown';
+  this.price = options.price || 5999;
+  this.onSale = options.onSale || false;
+  this.discount = options.discount ||  0;
+  this.developer = options.developer || 'Unknown';
+}
+
+// Let's add a getPrice method to the constructor's prototype
+Game.prototype = {
+  getSalePrice: () => Math.round(this.price - this.price * this.discount, 10),
+};
+
+// And here's a constructed object
+const newGame = new Game({
+  name: 'Chicken Attack',
+  releaseYear: 2019,
+  genre: 'RPG',
+  price: 5999,
+  onSale: true,
+  discount: 0.3,
+  developer: 'Bust-Em-Up Interactive',
+});
+
+// This shows prototypal properties
+// Also, you'd have to manually push these to an array for further iteration
+for (let key in newGame) {
+  console.log(key); // lists `getSalePrice`
+}
+
+console.log('===============');
+
+// This doesn't show prototypal properties
+// And its output is already an iterable array!
+console.log(Object.keys(newGame)); // no 'getSalePrice'
+
+console.log('===============');
+
+// That means we have access to all the normal array methods, like filter or map
+const justNameAndGenreKeys = Object.keys(newGame).filter(key => key === 'name' || key === 'genre');
+console.log(justNameAndGenreKeys); // ['name', 'genre']
+
+console.log('===============');
+
+// We can also run a forEach loop on the array of keys
+const gameKeys = Object.keys(newGame);
+gameKeys.forEach(key => {
+  if (typeof newGame[key] === 'string') {
+    console.log(newGame[key]); // just logs the values that are strings
+  }
+});
+
+console.log('===============');
+
+// We can also work with the values directly
+console.log(Object.values(newGame).filter(value => typeof value === 'number')); // [2019, 4999, 0.3]
+
+console.log('===============');
+
+// Finally, we can use Object.entries to get paired key/value arrays
+const entries = Object.entries(newGame);
+console.log(entries); // Array of arrays ([key, value])
+
+// And of course we can iterate over that array of arrays
+entries.forEach(([key, value]) => {
+  console.log('key: ' + key + ', value: ' + value);
+});
+
+// Here's the example above but without destructuring each key/value array
+/*
+entries.forEach(entry => {
+  console.log('key: ' + entry[0] + ', value: ' + entry[1]);
+});
+*/
+
+</script>
+</html>

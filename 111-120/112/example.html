@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>DOM Insertion Example</title>
+    <style type="text/css">
+      #box1 { width: 400px; height: 400px; margin-bottom: 30px; background-color: #CCFFFF; padding: 30px; }
+      #box2 { width: 400px; height: 400px; margin-bottom: 30px; background-color: #FFCCFF; padding: 30px; }
+      #box3 { width: 400px; height: 400px; margin-bottom: 30px; background-color: #FFFFCC; padding: 30px; }
+      .test-class { color: #FFFFFF; }
+    </style>
+  </head>
+  <body>
+    <div id="box1">Box 1</div>
+    <div id="box2">Box 2</div>
+    <div id="box3">Box 3</div>
+  </body>
+<script>
+// Wait for the DOM to be ready
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Create a new element
+  const newBox = document.createElement('div');
+  newBox.innerText = 'Box 4';
+  newBox.style = 'width: 200px; height: 200px; padding: 30px; background-color: #0000CC';
+
+  // Let's add a class just to show how it's done
+  newBox.classList.add('test-class');
+
+  // Insert it inside Box 2
+  const box2 = document.getElementById('box2');
+  box2.appendChild(newBox);
+
+  // You cannot append a new element to multiple places. It will move, rather than duplicate
+  const newBox2 = document.createElement('div');
+  newBox2.innerText = 'White Box';
+  newBox2.style = 'width: 100px; height: 100px; padding: 30px; background-color: #FFFFFF';
+
+  const boxes = document.querySelectorAll('div');
+  boxes.forEach(box => {
+    box.appendChild(newBox2);
+  });
+
+
+});
+</script>
+</html>

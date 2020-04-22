@@ -1,0 +1,15 @@
+{
+  "name": "tdd-part-1",
+  "version": "1.0.0",
+  "description": "Test Drive Development Tutorial - Part 1 - CloseBrace.com",
+  "main": "index.js",
+  "dependencies": {
+    "jest": "^25.2.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Christopher Buecheler",
+  "license": "ISC"
+}
